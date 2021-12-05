@@ -1,0 +1,12 @@
+.res-wrapper {
+  display: flex;
+  width: 300px;
+  height: 200px;
+  border: 1px black solid;
+}
+
+.res-wrapper article {
+  width: 50%;
+  height: 100%;
+  border: 1px red solid;
+}
