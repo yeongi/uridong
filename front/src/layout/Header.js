@@ -1,17 +1,58 @@
 import { Button, TextField } from "@mui/material";
-import { Link } from "react-router-dom";
+import { useContext } from "react";
+import MemberCtx from "../store/memberContext";
+import { Link, useNavigate } from "react-router-dom";
 import classes from "../style/layout.module.css";
 
 const Header = () => {
+  const memberCtx = useContext(MemberCtx);
+  const navigate = useNavigate();
+  console.log(memberCtx.isLoggedIn);
+
   return (
     <div className={classes["header-wrapper"]}>
       <div className={classes["header-login"]}>
-        <Button variant="contained">
-          <Link to="/login">로그인</Link>
-        </Button>
-        <Button variant="contained">
-          <Link to="/signup">회원가입</Link>
-        </Button>
+        {memberCtx.isLoggedIn ? (
+          <Button
+            variant="contained"
+            onClick={(e) => {
+              navigate("/user");
+            }}
+          >
+            마이 페이지
+          </Button>
+        ) : (
+          <Button
+            variant="contained"
+            onClick={(e) => {
+              navigate("/login");
+            }}
+          >
+            로그인
+          </Button>
+        )}
+
+        {memberCtx.isLoggedIn ? (
+          <Button
+            variant="contained"
+            onClick={(e) => {
+              memberCtx.onLogOut();
+              alert("로그아웃 됐습니다.");
+              navigate("/");
+            }}
+          >
+            로그아웃
+          </Button>
+        ) : (
+          <Button
+            variant="contained"
+            onClick={(e) => {
+              navigate("/signup");
+            }}
+          >
+            회원가입
+          </Button>
+        )}
       </div>
       <div className={classes["header-search"]}>
         <div className={classes.item}>

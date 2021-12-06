@@ -15,8 +15,6 @@ function App() {
         <div>
           <Link to="/">Home</Link>
           <br />
-          <Link to="/user">마이페이지</Link>
-          <br />
           <Link to="/restaraunt">식당</Link>
           <br />
         </div>

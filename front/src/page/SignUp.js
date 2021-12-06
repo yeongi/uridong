@@ -10,7 +10,7 @@ const SignUp = () => {
   const [phone, setPhone] = useState("");
   const [preferArea, setPreferArea] = useState("");
 
-  const submitMember = (e) => {
+  const submitMember = async (e) => {
     e.preventDefault();
 
     const userInfo = {
@@ -22,7 +22,9 @@ const SignUp = () => {
       area: preferArea,
     };
 
-    User.create(userInfo);
+    const result = await User.create(userInfo);
+
+    console.log(result);
   };
 
   return (

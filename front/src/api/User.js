@@ -1,6 +1,6 @@
 const CREATE_API = "http://localhost:4000/users";
 
-const User = {
+const UserAPI = {
   create: (user) => {
     return fetch(`${CREATE_API}/signUp`, {
       method: "post",
@@ -11,7 +11,15 @@ const User = {
     });
   },
 
-  get: () => {},
+  checkLogin: (member) => {
+    return fetch(`${CREATE_API}/login`, {
+      method: "post",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(member),
+    });
+  },
 
   getList: () => {},
 
@@ -20,4 +28,4 @@ const User = {
   update: () => {},
 };
 
-export default User;
+export default UserAPI;

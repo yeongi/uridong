@@ -1,3 +1,4 @@
+const e = require("express");
 const { v4 } = require("uuid");
 const pool = require("../../config/dbConfig");
 module.exports = {
@@ -49,4 +50,24 @@ module.exports = {
   },
   updateUser: (userInfo) => {},
   deleteUser: (userInfo) => {},
+  checkUser: async (userInfo) => {
+    try {
+      console.log(userInfo);
+      const { id, pw } = userInfo;
+      const conn = await pool.getConnection();
+      const query = "select * from member where member_id = ?;";
+      // const [{ affectRows: result }] = await conn.query(query, [id]);
+      const [result] = await conn.query(query, [id]);
+      conn.release();
+      const { memeber_pw } = result[0];
+      if (memeber_pw === pw) {
+        return result[0];
+      } else {
+        return 0;
+      }
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
+  },
 };
