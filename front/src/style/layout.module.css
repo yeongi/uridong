@@ -1,15 +1,28 @@
 .header-wrapper {
   width: 100%;
-  height: 100px;
+  height: 120px;
   border: 1 solid black;
 }
 
 .header-login {
   display: flex;
-  background-color: gray;
+  justify-content: flex-end;
+  padding: 10px;
+  background-color: rgb(226, 226, 226);
+}
+
+.header-login Link {
+  color: black;
 }
 
 .header-search {
   display: flex;
-  background-color: gray;
+  justify-content: space-between;
+  padding: 10px;
+  background-color: rgb(219, 219, 219);
+}
+
+.header-search .item {
+  display: flex;
+  gap: 20px;
 }

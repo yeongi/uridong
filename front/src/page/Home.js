@@ -1,3 +1,6 @@
+import CurArea from "../component/CurArea";
+import Favorite from "../component/Favorite";
+import LikeArea from "../component/LikeArea";
 import Restaurant from "../component/Restaurant";
 import Header from "../layout/Header";
 
@@ -6,11 +9,9 @@ const Home = () => {
     <>
       <h1>메인 홈페이지</h1>
       <Header />
-      <Restaurant />
-      <Restaurant />
-      <Restaurant />
-      <Restaurant />
-      <Restaurant />
+      <CurArea />
+      <LikeArea />
+      <Favorite />
     </>
   );
 };
