@@ -6,6 +6,7 @@ import SignUp from "./page/SignUp";
 import RstDetail from "./page/RstDetail";
 import RstApply from "./page/RstApply";
 import User from "./page/User";
+import Footer from "./layout/Footer";
 
 function App() {
   return (
@@ -13,10 +14,6 @@ function App() {
       <div className="wrapper">
         <div>
           <Link to="/">Home</Link>
-          <br />
-          <Link to="/signup">회원가입</Link>
-          <br />
-          <Link to="/login">로그인</Link>
           <br />
           <Link to="/user">마이페이지</Link>
           <br />
@@ -33,6 +30,7 @@ function App() {
           </Route>
         </Routes>
       </div>
+      <Footer />
     </>
   );
 }

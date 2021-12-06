@@ -1,6 +1,7 @@
 import { Box } from "@mui/system";
 import { TextField, Button } from "@mui/material";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import RstApi from "../api/Restaraunt";
 
 const RstApply = () => {
@@ -139,7 +140,7 @@ const RstApply = () => {
         />
         <br />
         <Button variant="filled" href="#outlined-buttons">
-          나가기
+          <Link to="/user">나가기</Link>
         </Button>
         <Button variant="filled" onClick={rstApplyHandler}>
           제출
