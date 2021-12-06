@@ -1,17 +1,19 @@
 import { Box } from "@mui/system";
 import { TextField, Button } from "@mui/material";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import RstApi from "../api/Restaraunt";
 
 const RstApply = () => {
+  const nav = useNavigate();
+
   //식당 state
   const [restaraunt, setRestaraunt] = useState({
     rst_name: "",
     rst_call_num: "",
     rst_addr: "",
     rst_category: "",
-    parton_rule: "",
+    patron_rule: "",
     patron_maintain: "",
     all_table_each: "",
     rule_table: "",
@@ -21,21 +23,25 @@ const RstApply = () => {
   const onChangeMyInput = (e) => {
     const name = e.target.name;
     const value = e.target.value;
-    setRestaraunt((...prevState) => {
+    setRestaraunt((prevState) => {
       return { ...prevState, [name]: value };
     });
   };
 
-  const rstApplyHandler = (e) => {
+  const rstApplyHandler = async (e) => {
     e.preventDefault();
 
     console.log("신청 시작");
-
-    const result = RstApi.create(restaraunt);
-
-    console.log("식당 신청 결과", result);
-
     console.log(restaraunt);
+
+    const result = await RstApi.create(restaraunt);
+    const data = await result.json();
+
+    console.log("식당 신청 결과", data);
+    if (data.status === 200) {
+      alert("신청 완료");
+      nav("/user");
+    }
   };
 
   return (

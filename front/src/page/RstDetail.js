@@ -1,7 +1,11 @@
 import classes from "../style/rst.module.css";
 import { Button } from "@mui/material";
+import { useState } from "react";
+import BoxModal from "../lib/BasicModal";
 
 const RstDetail = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <>
       <h1>식당 상세 페이지</h1>
@@ -11,17 +15,15 @@ const RstDetail = () => {
             <div className={classes.item}>식당사진</div>
             <div className={classes.item}>지도 사진</div>
             <div className={classes.item}>
-              <Button variant="outlined" size="large">
+              <Button variant="outlined" size="small">
                 즐겨찾기
               </Button>
               <br />
-              <Button variant="outlined" size="large">
-                쿠폰보유
-              </Button>
+              <BoxModal btn_name="쿠폰보유" title="쿠폰 보유 목록" />
               <br />
-              <Button variant="outlined" size="large">
-                예약하기
-              </Button>
+              <BoxModal btn_name="예약하기" title="예약 신청서">
+                <h1>예약 신청서</h1>
+              </BoxModal>
             </div>
           </article>
           <article>

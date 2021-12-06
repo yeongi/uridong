@@ -9,7 +9,7 @@ module.exports = {
         rst_call_num,
         rst_addr,
         // rst_category,
-        parton_rule,
+        patron_rule,
         patron_maintain,
         all_table_each,
         rule_table,
@@ -17,7 +17,7 @@ module.exports = {
       } = rstInfo;
       const conn = await pool.getConnection();
       const query = `INSERT INTO restaurant
-            (rst_num,
+            (
               seller_member_num,
               category_num,
               rst_name,
@@ -37,20 +37,26 @@ module.exports = {
                     ?,
                     ?,
                     ?,
-                    UNIX_TIMESTAMP(),
-                    ?,?,?,?,?,?,?,?
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?
                 );`;
       const [{ affectRows: result }] = await conn.query(query, [
-        Math.floor(Math.random() * 10000000) + 1000000,
         //일단 샘플 데이터로
         11,
         1,
         rst_name,
         rst_call_num,
         rst_addr,
-        null,
-        null,
-        parton_rule,
+        new Date(),
+        "서류파일",
+        "사진파일",
+        patron_rule,
         patron_maintain,
         all_table_each,
         rule_table,
