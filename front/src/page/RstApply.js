@@ -42,6 +42,7 @@ const RstApply = () => {
     <>
       <h1>식당 신청 페이지</h1>
       <hr />
+      <Link to="/user">나가기 </Link>
       <Box
         component="form"
         sx={{

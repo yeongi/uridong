@@ -33,3 +33,21 @@
   height: 400px;
   background-color: rgb(241, 241, 251);
 }
+
+.users-wrapper {
+  display: flex;
+  width: 100%;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
+
+.users-wrapper article {
+  width: 40%;
+  height: 400px;
+  padding: 20px;
+  border: 1px black solid;
+  border-radius: 20px;
+}
