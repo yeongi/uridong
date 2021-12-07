@@ -6,7 +6,7 @@ import Header from "../layout/Header";
 const Home = () => {
   return (
     <>
-      <h1>메인 홈페이지</h1>
+      <h1>관리자 페이지</h1>
       <Header />
       <CurArea />
       <LikeArea />

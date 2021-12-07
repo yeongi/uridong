@@ -15,8 +15,6 @@ function App() {
         <div>
           <Link to="/">Home</Link>
           <br />
-          <Link to="/restaraunt">식당</Link>
-          <br />
         </div>
         <Routes>
           <Route path="/" element={<Home />} />

@@ -1,0 +1,4 @@
+광고 시나리오
+
+SELECT * FROM ad_detail 
+WHERE now() BETWEEN ad_start_date AND date_add(ad_start_date,interval ad_term day);
