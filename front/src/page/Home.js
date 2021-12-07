@@ -1,7 +1,6 @@
 import CurArea from "../component/CurArea";
 import Favorite from "../component/Favorite";
 import LikeArea from "../component/LikeArea";
-import Restaurant from "../component/Restaurant";
 import Header from "../layout/Header";
 
 const Home = () => {

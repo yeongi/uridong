@@ -31,9 +31,6 @@ const RstApply = () => {
   const rstApplyHandler = async (e) => {
     e.preventDefault();
 
-    console.log("신청 시작");
-    console.log(restaraunt);
-
     const result = await RstApi.create(restaraunt);
     const data = await result.json();
 

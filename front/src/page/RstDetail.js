@@ -1,11 +1,8 @@
 import classes from "../style/rst.module.css";
 import { Button } from "@mui/material";
-import { useState } from "react";
 import BoxModal from "../lib/BasicModal";
 
 const RstDetail = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
   return (
     <>
       <h1>식당 상세 페이지</h1>

@@ -1,7 +1,7 @@
 import { Button, TextField } from "@mui/material";
 import { useContext } from "react";
 import MemberCtx from "../store/memberContext";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import classes from "../style/layout.module.css";
 
 const Header = () => {
