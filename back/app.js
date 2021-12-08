@@ -9,10 +9,10 @@ var cors = require("cors");
 const dotenv = require("dotenv");
 dotenv.config();
 
-var usersRouter = require("./routes/user"); //디렉토리로
+const usersRouter = require("./routes/user/index");
 const rstRouter = require("./routes/restaraunt/index");
 
-var app = express();
+const app = express();
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -25,6 +25,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(cors());
 
+//라우터 경로 설정
 app.use("/r", rstRouter);
 app.use("/users", usersRouter);
 

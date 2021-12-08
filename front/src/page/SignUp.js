@@ -1,5 +1,6 @@
 import { TextField, Button } from "@mui/material";
 import { useState } from "react";
+import { useNavigate } from "react-router";
 import User from "../api/User";
 
 const SignUp = () => {
@@ -9,6 +10,8 @@ const SignUp = () => {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [preferArea, setPreferArea] = useState("");
+
+  const Nav = useNavigate();
 
   const submitMember = async (e) => {
     e.preventDefault();
@@ -25,6 +28,8 @@ const SignUp = () => {
     const result = await User.create(userInfo);
 
     console.log(result);
+
+    Nav("/");
   };
 
   return (

@@ -24,4 +24,10 @@ router.get("/rst", async (req, res) => {
   }
 });
 
+router.get("/list", async (req, res) => {
+  res.send("리스트");
+  // //식당 번호 배열을 넣음
+  // RstService.getMainRstList();
+});
+
 module.exports = router;
