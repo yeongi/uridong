@@ -25,12 +25,13 @@ router.get("/rst", async (req, res) => {
 });
 
 router.get("/list", async (req, res) => {
-  res.send("리스트");
   // //식당 번호 배열을 넣음
+  // 메인페이지에 띄워줄 식당 정보
   // RstService.getMainRstList();
 });
 
 router.get("/list/:area", async (req, res) => {
+  let { area } = req.area;
   //지역의 식당 리스트 가져오기
 });
 
