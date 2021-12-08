@@ -45,7 +45,7 @@ router.post("/login", async (req, res) => {
   }
 });
 
-router.get("/:userNum", async (req, res) => {
+router.get("/my/:userNum", async (req, res) => {
   //db 내계정 정보 가져오는 서비스
   try {
     //파라미터를 사용

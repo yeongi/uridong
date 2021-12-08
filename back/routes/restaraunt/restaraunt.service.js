@@ -95,6 +95,5 @@ module.exports = {
       throw error;
     }
   },
-  updateRst: (userInfo) => {},
-  deleteRst: (userInfo) => {},
+  areaRstList: async (area) => {},
 };

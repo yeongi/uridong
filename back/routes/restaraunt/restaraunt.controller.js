@@ -30,4 +30,8 @@ router.get("/list", async (req, res) => {
   // RstService.getMainRstList();
 });
 
+router.get("/list/:area", async (req, res) => {
+  //지역의 식당 리스트 가져오기
+});
+
 module.exports = router;
