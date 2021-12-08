@@ -30,15 +30,7 @@ export default function BasicModal(props) {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            {props.title}
-          </Typography>
-          {props.children}
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            헤으응
-          </Typography>
-        </Box>
+        <Box sx={style}>{props.children}</Box>
       </Modal>
     </div>
   );

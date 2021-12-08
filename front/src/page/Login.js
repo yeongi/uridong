@@ -19,7 +19,14 @@ const Login = () => {
     const data = await result.json();
 
     if (data.status === 200 && data.message === "Success") {
-      memberCtx.onLogIn();
+      console.log(data);
+      memberCtx.onLogIn({
+        isLoggedIn: true,
+        num: data.data.member_num,
+        id: data.data.member_id,
+        name: data.data.member_name,
+        like_area: data.data.like_area,
+      });
       navigate("/");
     } else {
       alert("로그인 실패 ");
