@@ -48,6 +48,17 @@ module.exports = {
       throw error;
     }
   },
+  getMyInfo: async (userNum) => {
+    try {
+      const conn = await pool.getConnection();
+      const query = "SELECT * FROM member where member_num = ?;";
+      const [result] = await conn.query(query, [userNum]);
+      conn.release();
+      return result;
+    } catch (error) {
+      throw error;
+    }
+  },
   updateUser: (userInfo) => {},
   deleteUser: (userInfo) => {},
   checkUser: async (userInfo) => {

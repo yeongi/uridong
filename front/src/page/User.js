@@ -5,6 +5,8 @@ import UserPlay from "../component/user/UserPlay";
 import UserRst from "../component/user/UserRst";
 import UserCoupon from "../component/user/UserCoupon";
 import classes from "../style/layout.module.css";
+import AdApi from "../api/Ad";
+import { useEffect } from "react";
 
 const User = () => {
   return (
@@ -33,7 +35,7 @@ const User = () => {
           <UserRst />
         </article>
         <hr />
-        <article>빈페이지</article>
+        <article>빈 페이지</article>
       </section>
       <hr />
     </>

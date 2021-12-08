@@ -45,4 +45,16 @@ router.post("/login", async (req, res) => {
   }
 });
 
+router.get("/:userNum", async (req, res) => {
+  //db 내계정 정보 가져오는 서비스
+  try {
+    //파라미터를 사용
+    let { userNum } = req.params;
+    const result = await UserService.getMyInfo(userNum);
+    res.status(200).json({ status: 200, data: result, message: "Success" });
+  } catch (error) {
+    return res.status(500).json({ status: 500, message: error });
+  }
+});
+
 module.exports = router;

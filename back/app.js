@@ -11,6 +11,7 @@ dotenv.config();
 
 const usersRouter = require("./routes/user/index");
 const rstRouter = require("./routes/restaraunt/index");
+const adRouter = require("./routes/ad/index");
 
 const app = express();
 
@@ -28,6 +29,7 @@ app.use(cors());
 //라우터 경로 설정
 app.use("/r", rstRouter);
 app.use("/users", usersRouter);
+app.use("/ad", adRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
