@@ -81,6 +81,6 @@ module.exports = {
       throw error;
     }
   },
-  updateRst: (userInfo) => {},
+  getMainRstList: (restArry) => {},
   deleteRst: (userInfo) => {},
 };
