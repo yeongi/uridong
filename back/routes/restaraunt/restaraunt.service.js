@@ -81,6 +81,20 @@ module.exports = {
       throw error;
     }
   },
-  getMainRstList: (restArry) => {},
+  favRstList: async (userInfo) => {
+    //유저번호를 이용해서 즐겨찾기 식당 가져와서
+    // 식당 정보를 조인 해서 리스트로 뽑아옴
+    try {
+      const conn = await pool.getConnection();
+      const query = "SELECT * FROM restaurant inner join member;";
+      const [result] = await conn.query(query);
+      conn.release();
+      return result;
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
+  },
+  updateRst: (userInfo) => {},
   deleteRst: (userInfo) => {},
 };

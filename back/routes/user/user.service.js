@@ -10,9 +10,9 @@ module.exports = {
             (
                 member_call_num,
                 member_name,
-                memeber_email,
+                member_email,
                 member_id,
-                memeber_pw,
+                member_pw,
                 like_area
                 ) VALUES (
                     ?,
@@ -59,8 +59,8 @@ module.exports = {
       // const [{ affectRows: result }] = await conn.query(query, [id]);
       const [result] = await conn.query(query, [id]);
       conn.release();
-      const { memeber_pw } = result[0];
-      if (memeber_pw === pw) {
+      const { member_pw } = result[0];
+      if (member_pw === pw) {
         return result[0];
       } else {
         return 0;

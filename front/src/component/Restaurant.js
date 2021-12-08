@@ -1,9 +1,17 @@
+import { useNavigate } from "react-router";
 import classes from "../style/rst.module.css";
 
 const Restaurant = (props) => {
+  const nav = useNavigate();
+
   return (
     <>
-      <section className={classes["rests-wrapper"]}>
+      <section
+        className={classes["rests-wrapper"]}
+        onClick={(e) => {
+          nav("/restaraunt");
+        }}
+      >
         <article>식당 사진</article>
         <article>
           <h3>{props.rst_name}</h3>

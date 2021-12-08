@@ -1,0 +1,14 @@
+
+상위 몇퍼인지 나오는 쿼리문
+
+SELECT * , (rank/@ALL)*100 AS percent FROM (
+SELECT * , ( @rank := @rank + 1 ) AS rank FROM(
+SELECT a.member_num, SUM(p.score) AS sum_score 
+FROM( member AS a INNER JOIN 
+(play AS p INNER JOIN member_play_history AS m ON p.play_num = m.play_num) 
+ON a.member_num = m.member_num, 
+(SELECT @rank := 0) AS d, 
+(SELECT @ALL := count(DISTINCT member_num) from member_play_history) AS f ) 
+WHERE m.end_date >= DATE_ADD(NOW() , INTERVAL 10 DAY) GROUP BY a.member_num 
+ORDER BY sum_score DESC
+)member_score_sum)member_ranking GROUP BY member_num ORDER BY rank;

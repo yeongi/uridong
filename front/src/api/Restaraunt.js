@@ -11,7 +11,7 @@ const RstApi = {
     });
   },
 
-  get: () => {},
+  getFavRst: () => {},
 
   getList: () => {},
 
