@@ -41,6 +41,15 @@ const UserAPI = {
     });
   },
 
+  getMyRst: (memberNum) => {
+    return fetch(`${CREATE_API}/myRst/${memberNum}`, {
+      method: "get",
+      headers: {
+        "Content-type": "application/json",
+      },
+    });
+  },
+
   delete: () => {},
 
   update: () => {},

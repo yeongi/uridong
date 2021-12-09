@@ -11,6 +11,7 @@ const UserAccount = () => {
     const result = await UserAPI.getMyInfo(memberCtx.member.num);
     const data = await result.json();
     setAccount(data.data[0]);
+    //eslint-disable-next-line
   }, [account, isLoading]);
 
   useEffect(() => {

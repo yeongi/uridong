@@ -21,8 +21,6 @@ const UserCoupon = () => {
     //eslint-disable-next-line
   }, []);
 
-  console.log("왜 안떠", coupon);
-
   return (
     <div>
       <h1>보유 쿠폰</h1>
