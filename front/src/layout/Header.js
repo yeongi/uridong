@@ -7,7 +7,7 @@ import classes from "../style/layout.module.css";
 const Header = () => {
   const memberCtx = useContext(MemberCtx);
   const navigate = useNavigate();
-  console.log(memberCtx.isLoggedIn);
+  console.log(memberCtx);
 
   return (
     <div className={classes["header-wrapper"]}>
