@@ -110,15 +110,16 @@ module.exports = {
       throw error;
     }
   },
-  rstDetail: async (rstnum) => {
+  getRstDetail: async (rstnum) => {
     try {
       const conn = await pool.getConnection();
-      const query = "SELECT * FROM restaurant inner join restaurant_category on restaurant.rst_num=restaurant_category.category_num where rstnum=?;";
-      const [result] = await conn.query(query,[rstnum]);
+      const query = `SELECT * FROM restaurant inner join restaurant_category 
+        on restaurant.category_num = restaurant_category.category_num 
+        where rst_num =?;`;
+      const [result] = await conn.query(query, [rstnum]);
       conn.release();
       return result;
     } catch (error) {
-      console.log(error);
       throw error;
     }
   },
