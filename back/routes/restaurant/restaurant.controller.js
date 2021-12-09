@@ -36,7 +36,6 @@ router.get("/list", async (req, res) => {
   }
 });
 
-
 router.get("/list/:area", async (req, res) => {
   let { area } = req.area;
   //검색지역의 식당 리스트 가져오기
@@ -48,6 +47,5 @@ router.get("/list/:area", async (req, res) => {
     return res.status(500).json({ status: 500, message: error });
   }
 });
-
 
 module.exports = router;

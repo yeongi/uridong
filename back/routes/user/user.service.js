@@ -72,7 +72,7 @@ module.exports = {
   },
   getMyPlay: async (userNum) => {
     try {
-      const conn = await pool.getConnection();
+      const conn = await pool.getConnection(); //활동과 조인해서 활동명과 활동점수도 추가함
       const query = `SELECT m.member_num, m.play_date, m.end_date, p.score, p.play_text
       FROM member_play_history as m  join play as p on m.play_num = p.play_num
       where m.member_num = ?; `;
