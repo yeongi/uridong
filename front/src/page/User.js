@@ -35,7 +35,6 @@ const User = () => {
           <UserRst />
         </article>
         <hr />
-        <article>빈 페이지</article>
       </section>
       <hr />
     </>
