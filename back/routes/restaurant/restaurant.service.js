@@ -2,6 +2,7 @@ const { v4 } = require("uuid");
 const pool = require("../../config/dbConfig");
 
 module.exports = {
+  //등록
   insertRst: async (rstInfo) => {
     try {
       const {
@@ -81,14 +82,13 @@ module.exports = {
       throw error;
     }
   },
-  favRstList: async (userNum) => {
-    //유저번호를 이용해서 즐겨찾기 식당 가져와서
-    // 식당 정보를 조인 해서 리스트로 뽑아옴
+  //지역 식당 리스트
+  areaRstList: async (area) => {
     try {
       const conn = await pool.getConnection();
-      const query = `SELECT restaurant.all_table_each, restaurant.use_table, restaurant.rsv_table, restaurant.review_each, restaurant.rst_star
-      from favorite inner join restaurant on favorite.rst_num=restaurant.rst_num where member_num=?`;
-      const [result] = await conn.query(query, [userNum]);
+      const query =
+        "SELECT all_table_each, use_table, rsv_table, review_each, rst_star FROM restaurant where rst_address=? ;";
+      const [result] = await conn.query(query, [area]);
       conn.release();
       return result;
     } catch (error) {
@@ -96,12 +96,13 @@ module.exports = {
       throw error;
     }
   },
-  //지역검색
-  areaRstList: async (area) => {
+  //즐겨찾기 식당 리스트
+  favRstList: async (userNum) => {
     try {
       const conn = await pool.getConnection();
-      const query = "SELECT * FROM restaurant where res_address=? ;";
-      const [result] = await conn.query(query, [area]);
+      const query = `SELECT restaurant.all_table_each, restaurant.use_table, restaurant.rsv_table, restaurant.review_each, restaurant.rst_star
+      from favorite inner join restaurant on favorite.rst_num=restaurant.rst_num where member_num=?`;
+      const [result] = await conn.query(query, [userNum]);
       conn.release();
       return result;
     } catch (error) {
