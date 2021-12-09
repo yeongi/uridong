@@ -59,6 +59,40 @@ module.exports = {
       throw error;
     }
   },
+  getMyFavorite: async (userNum) => {
+    try {
+      const conn = await pool.getConnection();
+      const query = "SELECT * FROM favorite where member_num = ?;";
+      const [result] = await conn.query(query, [userNum]);
+      conn.release();
+      return result;
+    } catch (error) {
+      throw error;
+    }
+  },
+  getMyPlay: async (userNum) => {
+    try {
+      const conn = await pool.getConnection();
+      const query = "SELECT * FROM member_play_history where member_num = ?;";
+      const [result] = await conn.query(query, [userNum]);
+      conn.release();
+      return result;
+    } catch (error) {
+      throw error;
+    }
+  },
+  getMyRst: async (userNum) => {
+    try {
+      const conn = await pool.getConnection();
+      const query =
+        "SELECT rst_num, rst_name, rst_address, rst_regist_date FROM restaurant where seller_member_num = ?;";
+      const [result] = await conn.query(query, [userNum]);
+      conn.release();
+      return result;
+    } catch (error) {
+      throw error;
+    }
+  },
   updateUser: (userInfo) => {},
   deleteUser: (userInfo) => {},
   checkUser: async (userInfo) => {

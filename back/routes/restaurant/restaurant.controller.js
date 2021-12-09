@@ -1,6 +1,6 @@
 var express = require("express");
 var router = express.Router();
-const RstService = require("./restaraunt.service");
+const RstService = require("./restaurant.service");
 
 //식당 등록하기
 router.post("/rst", async (req, res) => {
@@ -15,7 +15,6 @@ router.post("/rst", async (req, res) => {
 //식당 리스트 가져오기
 router.get("/rst", async (req, res) => {
   try {
-    console.log("lol");
     const result = await RstService.getRstList();
     res.status(200).json({ status: 200, data: result, message: "Success" });
   } catch (error) {

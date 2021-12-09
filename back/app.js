@@ -10,7 +10,7 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 const usersRouter = require("./routes/user/index");
-const rstRouter = require("./routes/restaraunt/index");
+const rstRouter = require("./routes/restaurant/index");
 const adRouter = require("./routes/ad/index");
 const cpRouter = require("./routes/coupon/index");
 

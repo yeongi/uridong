@@ -1,11 +1,11 @@
 const pool = require("../../config/dbConfig");
 
 module.exports = {
-  getMyCoupon: async (membernum) => {
+  getMyCoupon: async (userNum) => {
     try {
       const conn = await pool.getConnection();
       const query = "SELECT * FROM member_coupon where member_num = ?;";
-      const [result] = await conn.query(query, [membernum]);
+      const [result] = await conn.query(query, [userNum]);
       conn.release();
       return result;
     } catch (error) {
