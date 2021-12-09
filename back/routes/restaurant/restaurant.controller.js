@@ -22,10 +22,23 @@ router.get("/rst", async (req, res) => {
     return res.status(500).json({ status: 500, message: error });
   }
 });
+//
+router.get("/list", async (req, res) => {
+  // //식당 번호 배열을 넣음
+  // 메인페이지에 띄워줄 식당 정보
+  // RstService.getMainRstList();
+  try {
+    const result = await RstService.getMainRstList();
+    res.status(200).json({ status: 200, data: result, message: "Success" });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ status: 500, message: error });
+  }
+});
 
-//지역 식당 리스트
 router.get("/list/:area", async (req, res) => {
-  let { area } = req.params;
+  let { area } = req.area;
+  //검색지역의 식당 리스트 가져오기
   try {
     const result = await RstService.areaRstList(area);
     res.status(200).json({ status: 200, data: result, message: "Success" });
