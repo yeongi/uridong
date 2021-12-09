@@ -95,7 +95,7 @@ module.exports = {
       throw error;
     }
   },
-  //선택지역
+  //지역검색
   areaRstList: async (area) => {
     try {
       const conn = await pool.getConnection();
@@ -108,17 +108,5 @@ module.exports = {
       throw error;
     }
   },
-  //선호지역
-  likeareaRstList: async (like_area) => {
-    try {
-      const conn = await pool.getConnection();
-      const query = "SELECT * FROM restaurant inner join member on member.like_area=restaurant.rst_address where like_area=? ;";
-      const [result] = await conn.query(query,[like_area]);
-      conn.release();
-      return result;
-    } catch (error) {
-      console.log(error);
-      throw error;
-    }
-  },
+
 };
