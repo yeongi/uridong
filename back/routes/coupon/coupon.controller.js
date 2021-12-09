@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const CouponService = require("./coupon.service");
 
+//내 쿠폰 확인
 router.get("/hav/:userNum", async (req, res) => {
   try {
     const { userNum } = req.params;
