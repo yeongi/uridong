@@ -23,6 +23,14 @@ const UserAPI = {
 
   getMyCouponList: (memberNum) => {},
 
+  getMyInfo: (memberNum) => {
+    return fetch(`${CREATE_API}/myinfo/${memberNum}`, {
+      method: "get",
+      headers: {
+        "Content-type": "application/json",
+      },
+    });
+  },
   delete: () => {},
 
   update: () => {},
