@@ -5,6 +5,7 @@ const FavList = (props) => {
   return (
     <div className={classes["over-scroll"]}>
       <p>
+        <hr />
         즐겨찾기 시작날짜 : {props.favorite_start_date} <br />
         예약 이행 횟수 : {props.rsv_do_count} <br />
         쿠폰 사용 횟수 : {props.coupon_use_count} <br />

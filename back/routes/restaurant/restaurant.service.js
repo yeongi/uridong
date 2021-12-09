@@ -86,8 +86,9 @@ module.exports = {
     // 식당 정보를 조인 해서 리스트로 뽑아옴
     try {
       const conn = await pool.getConnection();
-      const query = "SELECT * from favorite inner join restaurant on favorite.rst_num=restaurant.rst_num where member_num=?";
-      const [result] = await conn.query(query,[userNum]);
+      const query = `SELECT restaurant.all_table_each, restaurant.use_table, restaurant.rsv_table, restaurant.review_each, restaurant.rst_star
+      from favorite inner join restaurant on favorite.rst_num=restaurant.rst_num where member_num=?`;
+      const [result] = await conn.query(query, [userNum]);
       conn.release();
       return result;
     } catch (error) {
@@ -100,7 +101,7 @@ module.exports = {
     try {
       const conn = await pool.getConnection();
       const query = "SELECT * FROM restaurant where res_address=? ;";
-      const [result] = await conn.query(query,[area]);
+      const [result] = await conn.query(query, [area]);
       conn.release();
       return result;
     } catch (errors) {
@@ -111,7 +112,7 @@ module.exports = {
   rstDetail: async (rstnum) => {
     try {
       const conn = await pool.getConnection();
-      const query = "SELECT * FROM restaurant inner join sale_timezone on restaurant.rst_num=sale_timezone.rst_num inner join   where rstnum=? ;";
+      const query = "SELECT * FROM restaurant inner join restaurant_category on restaurant.rst_num=restaurant_category.category_num where rstnum=?;";
       const [result] = await conn.query(query,[rstnum]);
       conn.release();
       return result;
@@ -120,5 +121,4 @@ module.exports = {
       throw error;
     }
   },
-
 };
