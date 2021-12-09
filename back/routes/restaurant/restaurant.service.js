@@ -103,6 +103,18 @@ module.exports = {
       const [result] = await conn.query(query,[area]);
       conn.release();
       return result;
+    } catch (errors) {
+      console.log(error);
+      throw error;
+    }
+  },
+  rstDetail: async (rstnum) => {
+    try {
+      const conn = await pool.getConnection();
+      const query = "SELECT * FROM restaurant inner join sale_timezone on restaurant.rst_num=sale_timezone.rst_num inner join   where rstnum=? ;";
+      const [result] = await conn.query(query,[rstnum]);
+      conn.release();
+      return result;
     } catch (error) {
       console.log(error);
       throw error;

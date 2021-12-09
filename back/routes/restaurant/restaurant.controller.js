@@ -50,9 +50,21 @@ router.get("/list/:area", async (req, res) => {
 
 router.get("/main/:usernum", async (req, res) => {
   let { usernum } = req.usernum;
-  //검색지역의 식당 리스트 가져오기
+  //즐겨찾기 식당
   try {
     const result = await RstService.favRstList(usernum);
+    res.status(200).json({ status: 200, data: result, message: "Success" });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ status: 500, message: error });
+  }
+});
+
+router.get("/main/:rstnum", async (req, res) => {
+  let { rstnum } = req.rstnum;
+  //
+  try {
+    const result = await RstService.favRstList(rstnum);
     res.status(200).json({ status: 200, data: result, message: "Success" });
   } catch (error) {
     console.log(error);
