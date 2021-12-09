@@ -17,4 +17,14 @@ router.get("/adlist", async (req, res) => {
   }
 });
 
+router.get("/Validadlist", async (req, res) => {
+
+  try {
+    console.log("광고목록 가져오기");
+    const result = await AdService.getAllList();
+    res.status(200).json({ status: 200, data: result, message: "Success" });
+  } catch (error) {
+    return res.status(500).json({ status: 500, message: error });
+  }
+});
 module.exports = router;
