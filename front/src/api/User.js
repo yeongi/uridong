@@ -20,9 +20,6 @@ const UserAPI = {
       body: JSON.stringify(member),
     });
   },
-
-  getMyCouponList: (memberNum) => {},
-
   getMyInfo: (memberNum) => {
     return fetch(`${CREATE_API}/myinfo/${memberNum}`, {
       method: "get",
@@ -50,9 +47,14 @@ const UserAPI = {
     });
   },
 
-  delete: () => {},
-
-  update: () => {},
+  getMyPlay: (memberNum) => {
+    return fetch(`${CREATE_API}/myPlay/${memberNum}`, {
+      method: "get",
+      headers: {
+        "Content-type": "application/json",
+      },
+    });
+  },
 };
 
 export default UserAPI;
