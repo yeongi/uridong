@@ -81,13 +81,13 @@ module.exports = {
       throw error;
     }
   },
-  favRstList: async (userInfo) => {
+  favRstList: async (userNum) => {
     //유저번호를 이용해서 즐겨찾기 식당 가져와서
     // 식당 정보를 조인 해서 리스트로 뽑아옴
     try {
       const conn = await pool.getConnection();
-      const query = "SELECT * FROM restaurant inner join member;";
-      const [result] = await conn.query(query);
+      const query = "SELECT * from favorite inner join restaurant on favorite.rst_num=restaurant.rst_num where member_num=?";
+      const [result] = await conn.query(query,[userNum]);
       conn.release();
       return result;
     } catch (error) {
@@ -95,5 +95,30 @@ module.exports = {
       throw error;
     }
   },
-  areaRstList: async (area) => {},
+  //선택지역
+  areaRstList: async (area) => {
+    try {
+      const conn = await pool.getConnection();
+      const query = "SELECT * FROM restaurant where res_address=? ;";
+      const [result] = await conn.query(query,[area]);
+      conn.release();
+      return result;
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
+  },
+  //선호지역
+  likeareaRstList: async (like_area) => {
+    try {
+      const conn = await pool.getConnection();
+      const query = "SELECT * FROM restaurant inner join member on member.like_area=restaurant.rst_address where like_area=? ;";
+      const [result] = await conn.query(query,[like_area]);
+      conn.release();
+      return result;
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
+  },
 };
