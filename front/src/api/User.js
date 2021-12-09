@@ -31,6 +31,16 @@ const UserAPI = {
       },
     });
   },
+
+  getMyFav: (memberNum) => {
+    return fetch(`${CREATE_API}/myFavorite/${memberNum}`, {
+      method: "get",
+      headers: {
+        "Content-type": "application/json",
+      },
+    });
+  },
+
   delete: () => {},
 
   update: () => {},
