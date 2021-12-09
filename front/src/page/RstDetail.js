@@ -1,25 +1,40 @@
 import classes from "../style/rst.module.css";
 import { Button } from "@mui/material";
 import BoxModal from "../lib/BasicModal";
+import HavigCoupon from "../component/HavingCoupon";
+import ApplyRsv from "../component/ApplyRsv";
+import { useParams } from "react-router";
+import thum from "../img/restaraunt.jpg";
+import map from "../img/map.jpg";
 
 const RstDetail = () => {
+  //param 1을 사용해서 통신
+  let { rstnum } = useParams();
+  console.log(useParams());
+
   return (
     <>
-      <h1>식당 상세 페이지</h1>
+      <h1>{rstnum}</h1>
       <div>
         <header>
           <article className={classes["rst-detail-header"]}>
-            <div className={classes.item}>식당사진</div>
-            <div className={classes.item}>지도 사진</div>
+            <div className={classes.item}>
+              <img alt="" src={thum} />
+            </div>
+            <div className={classes.item}>
+              <img alt="" src={map} />
+            </div>
             <div className={classes.item}>
               <Button variant="outlined" size="small">
-                즐겨찾기
+                즐겨찾기 추가하기
               </Button>
               <br />
-              <BoxModal btn_name="쿠폰보유" title="쿠폰 보유 목록" />
+              <BoxModal btn_name="쿠폰보유">
+                <HavigCoupon rstnum={rstnum} />
+              </BoxModal>
               <br />
-              <BoxModal btn_name="예약하기" title="예약 신청서">
-                <h1>예약 신청서</h1>
+              <BoxModal btn_name="예약하기">
+                <ApplyRsv rstnum={rstnum} />
               </BoxModal>
             </div>
           </article>

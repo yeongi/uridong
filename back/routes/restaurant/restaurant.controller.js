@@ -1,6 +1,6 @@
 var express = require("express");
 var router = express.Router();
-const RstService = require("./restaraunt.service");
+const RstService = require("./restaurant.service");
 
 //식당 등록하기
 router.post("/rst", async (req, res) => {

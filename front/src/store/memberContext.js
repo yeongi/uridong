@@ -4,34 +4,45 @@ const MemberCtx = React.createContext({
   // userId: null,
   // sessionId: null,
   isLoggedIn: false,
+  member: {},
   onLogIn: () => {},
   onLogOut: () => {},
 });
 
 export const MemberContextProvider = (props) => {
   //state
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [member, setIsLoggedIn] = useState({
+    isLoggedIn: false,
+    num: "",
+    id: "",
+    name: "",
+    like_area: "",
+  });
 
   //handler
-  const onLogInHandler = () => {
-    setIsLoggedIn(true);
+  const onLogInHandler = (member) => {
+    setIsLoggedIn(member);
   };
 
   const onLogOutHandler = () => {
-    setIsLoggedIn(false);
+    setIsLoggedIn({
+      isLoggedIn: false,
+      num: "",
+      id: "",
+      name: "",
+      like_area: "",
+    });
   };
-
-  //네트워크 통신 해서 인증
-  useEffect(() => {}, []);
 
   //객체를 기억하기 위해 캐싱을 한번 함
   const memoValue = useMemo(
     () => ({
-      isLoggedIn: isLoggedIn,
+      isLoggedIn: member.isLoggedIn,
+      member: member,
       onLogIn: onLogInHandler,
       onLogOut: onLogOutHandler,
     }),
-    [isLoggedIn]
+    [member]
   );
 
   return (

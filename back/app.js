@@ -10,8 +10,9 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 const usersRouter = require("./routes/user/index");
-const rstRouter = require("./routes/restaraunt/index");
+const rstRouter = require("./routes/restaurant/index");
 const adRouter = require("./routes/ad/index");
+const cpRouter = require("./routes/coupon/index");
 
 const app = express();
 
@@ -30,6 +31,7 @@ app.use(cors());
 app.use("/r", rstRouter);
 app.use("/users", usersRouter);
 app.use("/ad", adRouter);
+app.use("/cp", cpRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

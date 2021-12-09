@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router";
 import classes from "../style/rst.module.css";
+import thum from "../img/restaraunt.jpg";
 
 const Restaurant = (props) => {
   const nav = useNavigate();
@@ -9,10 +10,12 @@ const Restaurant = (props) => {
       <section
         className={classes["rests-wrapper"]}
         onClick={(e) => {
-          nav("/restaraunt");
+          nav("/restaraunt/1");
         }}
       >
-        <article>식당 사진</article>
+        <article>
+          <img src={thum} alt="" />
+        </article>
         <article>
           <h3>{props.rst_name}</h3>
           <p>전체 식탁 수 : {props.table_count}</p>

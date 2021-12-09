@@ -1,8 +1,8 @@
 .rests-wrapper {
   display: flex;
-  width: 350px;
-  height: 230px;
-  border: 1px black solid;
+  width: 400px;
+  height: 250px;
+  gap: 20;
   padding: 10px;
   border-radius: 20px;
 }
@@ -10,6 +10,15 @@
 .rests-wrapper article {
   width: 50%;
   height: 100%;
+  justify-content: space-between;
+  padding: 5px;
+  background-color: rgba(255, 255, 255, 0);
+}
+
+.rests-wrapper article img {
+  width: 100%;
+  height: 100%;
+  border-radius: 20;
 }
 
 .rests-wrapper article p {
@@ -34,7 +43,9 @@
 .rst-detail-header .item {
   width: 40%;
   height: 80%;
+  margin: 0 auto;
   border: 1px black solid;
+  overflow: hidden;
 }
 
 .rst-detail-header .item Button {

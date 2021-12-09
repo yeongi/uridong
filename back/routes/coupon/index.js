@@ -1,2 +1,2 @@
-const CouponRouter = require("./Coupon.controller");
+const CouponRouter = require("./coupon.controller");
 module.exports = CouponRouter;

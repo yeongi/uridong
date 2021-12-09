@@ -50,4 +50,5 @@
   padding: 20px;
   border: 1px black solid;
   border-radius: 20px;
+  overflow: scroll;
 }
