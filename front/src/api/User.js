@@ -21,7 +21,7 @@ const UserAPI = {
     });
   },
 
-  getList: () => {},
+  getMyCouponList: (memberNum) => {},
 
   delete: () => {},
 

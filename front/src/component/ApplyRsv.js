@@ -1,3 +1,4 @@
+import { Select, TextField } from "@mui/material";
 import { useContext } from "react";
 import MemberCtx from "../store/memberContext";
 
@@ -8,7 +9,16 @@ const ApplyRsv = () => {
       <h1>예약 신청 하기</h1>
       {memberCtx.isLoggedIn && (
         <>
-          <h3>예약 폼 만들기</h3>
+          <h3>예약 하기</h3>
+          <hr />
+          <label>보유 쿠폰</label>
+          <p>쿠폰 목록 나열</p>
+          <br />
+          <label>예상 도착 시간</label>
+          <TextField required label="분" variant="standard" />
+          <br />
+          <label>예약 인원</label>
+          <TextField required label="몇명" variant="standard" />
         </>
       )}
       {!memberCtx.isLoggedIn && (

@@ -30,11 +30,11 @@ const RstDetail = () => {
               </Button>
               <br />
               <BoxModal btn_name="쿠폰보유">
-                <HavigCoupon />
+                <HavigCoupon rstnum={rstnum} />
               </BoxModal>
               <br />
               <BoxModal btn_name="예약하기">
-                <ApplyRsv />
+                <ApplyRsv rstnum={rstnum} />
               </BoxModal>
             </div>
           </article>
