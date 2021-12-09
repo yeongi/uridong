@@ -73,7 +73,9 @@ module.exports = {
   getMyPlay: async (userNum) => {
     try {
       const conn = await pool.getConnection();
-      const query = "SELECT * FROM member_play_history where member_num = ?;";
+      const query = `SELECT m.member_num, m.play_date, m.end_date, p.score, p.play_text
+      FROM member_play_history as m  join play as p on m.play_num = p.play_num
+      where m.member_num = ?; `;
       const [result] = await conn.query(query, [userNum]);
       conn.release();
       return result;

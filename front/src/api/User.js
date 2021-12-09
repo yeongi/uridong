@@ -23,6 +23,33 @@ const UserAPI = {
 
   getMyCouponList: (memberNum) => {},
 
+  getMyInfo: (memberNum) => {
+    return fetch(`${CREATE_API}/myinfo/${memberNum}`, {
+      method: "get",
+      headers: {
+        "Content-type": "application/json",
+      },
+    });
+  },
+
+  getMyFav: (memberNum) => {
+    return fetch(`${CREATE_API}/myFavorite/${memberNum}`, {
+      method: "get",
+      headers: {
+        "Content-type": "application/json",
+      },
+    });
+  },
+
+  getMyRst: (memberNum) => {
+    return fetch(`${CREATE_API}/myRst/${memberNum}`, {
+      method: "get",
+      headers: {
+        "Content-type": "application/json",
+      },
+    });
+  },
+
   delete: () => {},
 
   update: () => {},
