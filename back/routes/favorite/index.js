@@ -1,2 +1,2 @@
-const FavRouter = require("./Favoirite.controller");
-module.exports = FavRouter;
+const favRouter = require("./favorite.controller");
+module.exports = favRouter;
