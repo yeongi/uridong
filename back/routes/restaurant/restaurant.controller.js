@@ -60,16 +60,6 @@ router.get("/main/:usernum", async (req, res) => {
   }
 });
 
-router.get("/main/:rstnum", async (req, res) => {
-  let { rstnum } = req.rstnum;
-  //
-  try {
-    const result = await RstService.favRstList(rstnum);
-    res.status(200).json({ status: 200, data: result, message: "Success" });
-  } catch (error) {
-    console.log(error);
-    return res.status(500).json({ status: 500, message: error });
-  }
-});
+
 
 module.exports = router;
