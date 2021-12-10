@@ -25,10 +25,12 @@ router.get("/rst", async (req, res) => {
 
 //지역 식당 리스트
 router.get("/list/:area", async (req, res) => {
-  let { area } = req.area;
+  let { area } = req.params;
+  const Darea = decodeURI(area);
   //검색지역의 식당 리스트 가져오기
   try {
-    const result = await RstService.areaRstList(area);
+    const result = await RstService.areaRstList(Darea);
+    console.log(result);
     res.status(200).json({ status: 200, data: result, message: "Success" });
   } catch (error) {
     console.log(error);

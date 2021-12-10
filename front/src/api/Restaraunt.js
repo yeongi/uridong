@@ -1,8 +1,8 @@
-const CREATE_API = "http://localhost:4000/r/rst";
+const CREATE_API = "http://localhost:4000/r";
 
 const RstApi = {
   create: (rstInfo) => {
-    return fetch(CREATE_API, {
+    return fetch(CREATE_API + "rst", {
       method: "post",
       headers: {
         "Content-type": "application/json",
@@ -11,7 +11,14 @@ const RstApi = {
     });
   },
 
-  getFavRst: () => {},
+  getAreaRst: (area) => {
+    return fetch(encodeURI(`${CREATE_API}/list/${area}`), {
+      method: "get",
+      headers: {
+        "Content-type": "application/json",
+      },
+    });
+  },
 
   getList: () => {},
 

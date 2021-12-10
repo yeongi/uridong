@@ -86,8 +86,8 @@ module.exports = {
   areaRstList: async (area) => {
     try {
       const conn = await pool.getConnection();
-      const query =
-        "SELECT all_table_each, use_table, rsv_table, review_each, rst_star FROM restaurant where rst_address=? ;";
+      const query = `SELECT rst_num,rst_name,all_table_each, use_table, rsv_table, review_each, rst_star 
+        FROM restaurant where rst_address=? ;`;
       const [result] = await conn.query(query, [area]);
       conn.release();
       return result;

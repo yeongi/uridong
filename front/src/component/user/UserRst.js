@@ -11,7 +11,6 @@ const UserRst = () => {
   const getMyFav = useCallback(async () => {
     const result = await UserAPI.getMyRst(memberCtx.member.num);
     const data = await result.json();
-    console.log();
 
     setRst(data.data);
   }, [rstList, isLoading]);
