@@ -19,7 +19,7 @@ module.exports = {
     try {
       const { member_num, rst_num } = info;
       const conn = await pool.getConnection(); //식당과 조인하여 해당 쿠폰에 대한 식당명 가져오기
-      const query = `SELECT restaurant_coupon.coupon_name, member_coupon.print_attime, member_coupon.end_attime
+      const query = `SELECT restaurant_coupon.coupon_num, restaurant_coupon.coupon_name, member_coupon.print_attime, member_coupon.end_attime
       FROM member_coupon join restaurant_coupon 
       on member_coupon.coupon_num = restaurant_coupon.coupon_num 
       where member_num = ? AND rst_num = ?;`;

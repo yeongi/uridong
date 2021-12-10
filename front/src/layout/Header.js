@@ -1,26 +1,43 @@
 import { Button, TextField } from "@mui/material";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import MemberCtx from "../store/memberContext";
 import { useNavigate } from "react-router-dom";
 import classes from "../style/layout.module.css";
+import Notification from "../component/user/Notification";
 
 const Header = () => {
   const memberCtx = useContext(MemberCtx);
   const navigate = useNavigate();
+  const [openModal, setOpen] = useState(false);
   console.log(memberCtx);
 
   return (
     <div className={classes["header-wrapper"]}>
       <div className={classes["header-login"]}>
+        {openModal && <Notification />}
         {memberCtx.isLoggedIn ? (
-          <Button
-            variant="contained"
-            onClick={(e) => {
-              navigate("/user");
-            }}
-          >
-            마이 페이지
-          </Button>
+          <>
+            <Button
+              variant="contained"
+              onClick={(e) => {
+                if (!openModal) {
+                  setOpen(true);
+                } else {
+                  setOpen(false);
+                }
+              }}
+            >
+              알림
+            </Button>
+            <Button
+              variant="contained"
+              onClick={(e) => {
+                navigate("/user");
+              }}
+            >
+              마이 페이지
+            </Button>
+          </>
         ) : (
           <Button
             variant="contained"
