@@ -10,7 +10,18 @@ const CpApi = {
     });
   },
 
-  delete: () => {},
+  getMyRstCouponList: (membernum, rstnum) => {
+    return fetch(`${CREATE_API}/havRst`, {
+      method: "post",
+      body: JSON.stringify({
+        member_num: membernum,
+        rst_num: rstnum,
+      }),
+      headers: {
+        "Content-type": "application/json",
+      },
+    });
+  },
 
   update: () => {},
 };

@@ -56,3 +56,14 @@
 .users-wrapper article::-webkit-scrollbar {
   display: none;
 }
+
+.notification-wrap {
+  width: 500px;
+  height: 300px;
+  border: 1px black solid;
+  border-radius: 20;
+  background-color: white;
+  position: fixed;
+  margin: 40px;
+  z-index: 20;
+}

@@ -31,10 +31,3 @@ module.exports = {
     }
   },
 };
-// `SELECT restaurant.rst_num, restaurant.rst_name, restaurant.all_table_each, restaurant.use_table, restaurant.rsv_table, restaurant.review_each, restaurant.rst_star
-//       from favorite inner join restaurant on favorite.rst_num=restaurant.rst_num where member_num=?`
-
-// `SELECT favorite.member_num, favorite.rst_num, 쿠폰이름, 발급 날짜, 만료 날짜
-//       FROM favorite join coupon on  where member_num = ?;`;
-
-// ("SELECT * FROM member_coupon where member_num = ?;");
