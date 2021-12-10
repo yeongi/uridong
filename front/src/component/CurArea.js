@@ -8,7 +8,7 @@ const CurArea = () => {
   const [isLoading, setLoading] = useState(false);
 
   const getArea = useCallback(async () => {
-    const result = await RstApi.getAreaRst("주례");
+    const result = await RstApi.getAreaRst("주례동");
     const data = await result.json();
     console.log(data);
     setRstList(data.data);
@@ -22,7 +22,7 @@ const CurArea = () => {
 
   return (
     <>
-      <h1>현재 접속한 지역 : 주례</h1>
+      <h1>현재 접속한 지역 : 주례동</h1>
       <div className={classes["rest-wrapper"]}>
         {isLoading &&
           rstList.map((item) => {

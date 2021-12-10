@@ -20,7 +20,14 @@ const RstApi = {
     });
   },
 
-  getList: () => {},
+  getFavRstList: (membernum) => {
+    return fetch(`${CREATE_API}/fav/${membernum}`, {
+      method: "get",
+      headers: {
+        "Content-type": "application/json",
+      },
+    });
+  },
 
   delete: () => {},
 

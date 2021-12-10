@@ -100,12 +100,12 @@ module.exports = {
   favRstList: async (userNum) => {
     try {
       const conn = await pool.getConnection();
-      const query = `SELECT restaurant.all_table_each, restaurant.use_table, restaurant.rsv_table, restaurant.review_each, restaurant.rst_star
+      const query = `SELECT restaurant.rst_num,restaurant.rst_name, restaurant.all_table_each, restaurant.use_table, restaurant.rsv_table, restaurant.review_each, restaurant.rst_star
       from favorite inner join restaurant on favorite.rst_num=restaurant.rst_num where member_num=?`;
       const [result] = await conn.query(query, [userNum]);
       conn.release();
       return result;
-    } catch (errors) {
+    } catch (error) {
       console.log(error);
       throw error;
     }

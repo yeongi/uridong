@@ -56,8 +56,7 @@ const Header = () => {
       </div>
       <div className={classes["header-search"]}>
         <div className={classes.item}>
-          <p> 식탁 비율 </p>
-          <p> 카테 고리 </p>
+          <p>식탁 비율</p>
         </div>
         <div className={classes.item}>
           <TextField
