@@ -19,8 +19,8 @@ const Restaurant = (props) => {
         <article>
           <h3>{props.rst_name}</h3>
           <p>전체 식탁 수 : {props.table_count}</p>
-          <p>현제 사용 식탁 수 {props.use_table}</p>
-          <p>예약 식탁 수 {props.rsv_count}</p>
+          <p>현제 사용 식탁 수 : {props.use_table}</p>
+          <p>예약 식탁 수 : {props.rsv_count}</p>
           <p>리뷰 수 : {props.review_count}</p>
           <p>평점 : {props.rating}</p>
         </article>

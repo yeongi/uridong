@@ -7,7 +7,7 @@ import classes from "../style/layout.module.css";
 const Header = () => {
   const memberCtx = useContext(MemberCtx);
   const navigate = useNavigate();
-  console.log(memberCtx.isLoggedIn);
+  console.log(memberCtx);
 
   return (
     <div className={classes["header-wrapper"]}>
@@ -56,8 +56,7 @@ const Header = () => {
       </div>
       <div className={classes["header-search"]}>
         <div className={classes.item}>
-          <p> 식탁 비율 </p>
-          <p> 카테 고리 </p>
+          <p>식탁 비율</p>
         </div>
         <div className={classes.item}>
           <TextField

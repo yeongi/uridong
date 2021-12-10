@@ -26,6 +26,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(cors());
+app.disable("etag");
 
 //라우터 경로 설정
 app.use("/r", rstRouter);
