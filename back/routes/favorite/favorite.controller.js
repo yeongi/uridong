@@ -12,16 +12,4 @@ router.post("/add", async (req, res) => {
   }
 });
 
-//즐겨찾기 식당 리스트add
-// router.get("/fav/:usernum", async (req, res) => {
-//   let { usernum } = req.params;
-//   try {
-//     const result = await RstService.favRstList(usernum);
-//     res.status(200).json({ status: 200, data: result, message: "Success" });
-//   } catch (error) {
-//     console.log(error);
-//     return res.status(500).json({ status: 500, message: error });
-//   }
-// });
-
 module.exports = router;
