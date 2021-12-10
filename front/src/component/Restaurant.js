@@ -10,7 +10,7 @@ const Restaurant = (props) => {
       <section
         className={classes["rests-wrapper"]}
         onClick={(e) => {
-          nav("/restaraunt/1");
+          nav(`/restaraunt/${props.rst_num}`);
         }}
       >
         <article>

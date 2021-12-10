@@ -33,6 +33,7 @@ const Favorite = () => {
             return (
               <Restaurant
                 key={item.rst_num}
+                rst_num={item.rst_num}
                 img="alt"
                 rst_name={item.rst_name}
                 table_count={item.all_table_each}

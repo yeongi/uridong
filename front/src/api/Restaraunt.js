@@ -29,7 +29,14 @@ const RstApi = {
     });
   },
 
-  delete: () => {},
+  getRstDetail: (rstnum) => {
+    return fetch(`${CREATE_API}/detail/${rstnum}`, {
+      method: "get",
+      headers: {
+        "Content-type": "application/json",
+      },
+    });
+  },
 
   update: () => {},
 };
