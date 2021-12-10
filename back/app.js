@@ -14,6 +14,7 @@ const rstRouter = require("./routes/restaurant/index");
 const adRouter = require("./routes/ad/index");
 const cpRouter = require("./routes/coupon/index");
 const favRouter = require("./routes/favorite/index");
+const rsvRouter = require("./routes/reservation/index");
 
 const app = express();
 
@@ -35,6 +36,7 @@ app.use("/users", usersRouter);
 app.use("/ad", adRouter);
 app.use("/cp", cpRouter);
 app.use("/fav", favRouter);
+app.use("/rsv", rsvRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

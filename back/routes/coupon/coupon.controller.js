@@ -14,7 +14,7 @@ router.get("/hav/:userNum", async (req, res) => {
 });
 
 //식당에 대한 내 쿠폰 확인
-router.get("/havRst", async (req, res) => {
+router.post("/havRst", async (req, res) => {
   try {
     const result = await CouponService.getMyRstCoupon(req.body);
     res.status(200).json({ status: 200, data: result, message: "Success" });

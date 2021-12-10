@@ -1,2 +1,2 @@
-const RsvRouter = require("./Reservation.controller");
+const RsvRouter = require("./reservation.controller");
 module.exports = RsvRouter;
