@@ -6,8 +6,6 @@ module.exports = {
     try {
       const { member_num, rst_num, rsv_man, arrive_predict_time } = info;
       const conn = await pool.getConnection();
-      //play에 서비스를 구현 한것을 가져와서 여기다가 사용한다.
-      const play_res = await playService.insertRsv(member_num);
       const query = `INSERT INTO restaurant_reservation (member_num, rst_num, rsv_attime, rsv_man, arrive_predict_time) VALUES (?,?,NOW(),?,?);`;
       const [result] = await conn.query(query, [
         member_num,
@@ -32,12 +30,28 @@ module.exports = {
       throw error;
     }
   },
-  updateReservation: async (info) => {
+  updateRsvStatus: async (info) => {
     try {
-      const { rsv_num } = info;
+      const { member_num, rsv_num } = info;
       const conn = await pool.getConnection();
-      const query = `UPDATE restaurant_reservation set rsv_status = "이행" WHERE rsv_num = ?;`;
-      const [result] = await conn.query(query, [rsv_num]);
+      //play에 서비스를 구현 한것을 가져와서 여기다가 사용한다.
+      const play_res = await playService.insertRsv(member_num);
+      const query = `UPDATE restaurant_reservation set rsv_status = "이행" WHERE member_num = ? AND rsv_num = ?;`;
+      const [result] = await conn.query(query, [member_num, rsv_num]);
+      conn.release();
+      return result;
+    } catch (error) {
+      throw error;
+    }
+  },
+  updateReviewStatus: async (info) => {
+    try {
+      const { member_num, rsv_num } = info;
+      const conn = await pool.getConnection();
+      //play에 서비스를 구현 한것을 가져와서 여기다가 사용한다.
+      const play_res = await playService.insertWreview(member_num);
+      const query = `UPDATE restaurant_reservation set rsv_status = "리뷰작성완료" WHERE member_num = ? AND rsv_num = ?;`;
+      const [result] = await conn.query(query, [member_num, rsv_num]);
       conn.release();
       return result;
     } catch (error) {
