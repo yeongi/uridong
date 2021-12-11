@@ -1,7 +1,7 @@
 import classes from "../style/rst.module.css";
 import { Button } from "@mui/material";
 import BoxModal from "../lib/BasicModal";
-import ApplyRsv from "../component/ApplyRsv";
+import ApplyRsv from "../component/form/ApplyRsv";
 import { useParams } from "react-router";
 import thum from "../img/restaraunt.jpg";
 import map from "../img/map.jpg";
