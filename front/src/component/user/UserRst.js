@@ -30,6 +30,7 @@ const UserRst = () => {
           return (
             <RstList
               key={element.rst_num}
+              rst_num={element.rst_num}
               rst_address={element.rst_address}
               rst_name={element.rst_name}
               rst_regist_date={element.rst_regist_date}

@@ -67,3 +67,8 @@
   margin: 40px;
   z-index: 20;
 }
+
+.btn-wrapper {
+  display: flex;
+  justify-content: space-around;
+}

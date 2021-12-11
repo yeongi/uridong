@@ -6,6 +6,7 @@ module.exports = {
   insertRst: async (rstInfo) => {
     try {
       const {
+        member_num,
         rst_name,
         rst_call_num,
         rst_addr,
@@ -49,7 +50,7 @@ module.exports = {
                 );`;
       const [{ affectRows: result }] = await conn.query(query, [
         //일단 샘플 데이터로
-        11, //회원 번호
+        member_num, //회원 번호
         1, //카테고리 번호
         rst_name,
         rst_call_num,
