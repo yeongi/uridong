@@ -12,11 +12,23 @@ router.post("/add", async (req, res) => {
   }
 });
 
+//즐겨찾기멤버 리스트
+router.get("/favlist/:rstnum", async (req, res) => {
+  let { rstnum } = req.params;
+  try {
+    const result = await FavService.getFavMemList(rstnum);
+    res.status(200).json({ status: 200, data: result, message: "Success" });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ status: 500, message: error });
+  }
+});
+
 //식당에 대한 모든 단골손님 리스트
 router.get("/patron/:rstnum", async (req, res) => {
   let { rstnum } = req.params;
   try {
-    const result = await FavService.getpatronList(rstnum);
+    const result = await FavService.getPatronList(rstnum);
     res.status(200).json({ status: 200, data: result, message: "Success" });
   } catch (error) {
     console.log(error);
