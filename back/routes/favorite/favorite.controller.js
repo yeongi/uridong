@@ -41,11 +41,12 @@ router.get("/patron/:rstnum", async (req, res) => {
 router.get("/patron/review/:rstnum", async (req, res) => {
   let { rstnum } = req.params;
   try {
-    const result = await FavService.getOneMonthpatronList(rstnum);
+    const result = await FavService.getOneMonthPatronList(rstnum);
     res.status(200).json({ status: 200, data: result, message: "Success" });
   } catch (error) {
     console.log(error);
     return res.status(500).json({ status: 500, message: error });
   }
 });
+
 module.exports = router;

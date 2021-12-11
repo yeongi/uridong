@@ -56,14 +56,15 @@ module.exports = {
     }
   },
 
-  getOneMonthpatronList: async (rstnum) => {
+  getOneMonthPatronList: async (rstnum) => {
     try {
       const conn = await pool.getConnection();
-      const query = `select member_name, member_email
+      const query = `
+      select member_name, member_email
       from member inner join favorite on member.member_num = favorite.member_num
-      where rst_num=? and last_review_date >= date_add(now(),interval -1 month) 
-      and patron_yn=true;`;
-      const [{ affectRows: result }] = await conn.query(query, [rstnum]);
+      where rst_num=1 and last_review_date <= date_add(CURDATE(),interval -1 month) and  patron_yn=1;`;
+      const [result] = await conn.query(query, [rstnum]);
+      console.log(result);
       conn.release();
       return result;
     } catch (error) {
