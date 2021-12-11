@@ -72,3 +72,17 @@
   display: flex;
   justify-content: space-around;
 }
+
+.list-wrapper {
+  overflow: scroll;
+  height: 100%;
+}
+
+.list-wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+.list-nav {
+  display: flex;
+  justify-content: space-around;
+}

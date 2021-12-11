@@ -1,7 +1,7 @@
 import React, { useCallback, useContext, useEffect, useState } from "react";
 import UserAPI from "../../api/User";
 import MemberCtx from "../../store/memberContext";
-import RstList from "./RstList";
+import RstList from "../list/RstList";
 
 const UserRst = () => {
   const [rstList, setRst] = useState([]);

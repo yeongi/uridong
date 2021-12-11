@@ -1,7 +1,7 @@
 import React, { useCallback, useContext, useEffect, useState } from "react";
 import MemberCtx from "../../store/memberContext";
 import UserAPI from "../../api/User";
-import FavList from "./FavList";
+import FavList from "../list/FavList";
 
 const UserFav = () => {
   const [favList, setFav] = useState([]);
