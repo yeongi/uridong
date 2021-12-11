@@ -1,7 +1,7 @@
 import { Button, TextField } from "@mui/material";
 import { useContext, useState, useCallback } from "react";
 import MemberCtx from "../../store/memberContext";
-import UserAPI from "../../api/User";
+import RsvApi from "../../api/Rsv";
 
 const ApplyRsv = (props) => {
   const memberCtx = useContext(MemberCtx);
@@ -9,7 +9,7 @@ const ApplyRsv = (props) => {
   const [people, setPeople] = useState();
 
   const addMyRsv = useCallback(async () => {
-    const result = await UserAPI.postMyRsv({
+    const result = await RsvApi.postMyRsv({
       member_num: memberCtx.member.num,
       rst_num: props.rstnum,
       rsv_man: people,

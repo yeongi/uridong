@@ -24,7 +24,7 @@ router.get("/listRsv/:userNum", async (req, res) => {
 });
 
 //예약 상태 변경하기(예약 이행 시)
-router.post("/updateRsv", async (req, res) => {
+router.post("/update/rsv", async (req, res) => {
   try {
     const result = await ReservationService.updateRsvStatus(req.body);
     // const fav_res = await FavService.updateRsvFavNum(req.body);
@@ -35,7 +35,7 @@ router.post("/updateRsv", async (req, res) => {
 });
 
 //예약 상태 변경하기(리뷰 작성 시)
-router.post("/updateRev", async (req, res) => {
+router.post("/update/review", async (req, res) => {
   try {
     const result = await ReservationService.updateReviewStatus(req.body);
     res.status(200).json({ status: 200, data: result, message: "Success" });
