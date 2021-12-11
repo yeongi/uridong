@@ -7,6 +7,7 @@ import UserCoupon from "../component/user/UserCoupon";
 import classes from "../style/layout.module.css";
 import AdApi from "../api/Ad";
 import { useEffect } from "react";
+import UserRsv from "../component/user/UserRsv";
 
 const User = () => {
   return (
@@ -35,6 +36,9 @@ const User = () => {
           <UserRst />
         </article>
         <hr />
+        <article>
+          <UserRsv />
+        </article>
       </section>
       <hr />
     </>

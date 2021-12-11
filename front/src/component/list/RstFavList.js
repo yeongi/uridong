@@ -46,6 +46,7 @@ const RstFavList = (props) => {
           <p>회원 이름</p>
           <p>즐겨찾기 시작 날짜</p>
           <p>비고</p>
+          <p>쿠폰 선택</p>
         </div>
         <hr />
         {isLoading &&
