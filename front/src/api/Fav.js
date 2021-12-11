@@ -32,7 +32,7 @@ const FavApi = {
   },
 
   getPatronReviewMember: (rstnum) => {
-    return fetch(`${CREATE_API}/patron/review${rstnum}`, {
+    return fetch(`${CREATE_API}/patron/review/${rstnum}`, {
       method: "get",
       headers: {
         "Content-type": "application/json",

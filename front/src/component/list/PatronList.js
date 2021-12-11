@@ -20,6 +20,7 @@ const PatronList = (props) => {
     isRender = true;
     const result = await FavApi.getPatronReviewMember(props.rst_num);
     const data = await result.json();
+    console.log(result);
     setList(data.data);
   }, [favList, isLoading]);
 

@@ -23,7 +23,15 @@ const CpApi = {
     });
   },
 
-  update: () => {},
+  postMyRstCoupon: (info) => {
+    return fetch(`${CREATE_API}/made`, {
+      method: "post",
+      body: JSON.stringify(info),
+      headers: {
+        "Content-type": "application/json",
+      },
+    });
+  },
 };
 
 export default CpApi;

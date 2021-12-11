@@ -1,6 +1,8 @@
 import { Button, TextField } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import CpApi from "../../api/Coupon";
 
 const CouponForm = (props) => {
   const [coupon, setCoupon] = useState({
@@ -11,6 +13,21 @@ const CouponForm = (props) => {
     use_possible_time: "",
     use_possible_man: "",
   });
+
+  const nav = useNavigate();
+
+  const couponMakeHandler = async (e) => {
+    e.preventDefault();
+
+    const result = await CpApi.postMyRstCoupon(coupon);
+    const data = await result.json();
+
+    console.log("식당 신청 결과", data);
+    if (data.status === 200) {
+      alert("쿠폰 생성");
+      nav("/user");
+    }
+  };
 
   const onChangeMyInput = (e) => {
     const name = e.target.name;
@@ -30,6 +47,7 @@ const CouponForm = (props) => {
         noValidate
         autoComplete="off"
         variant="filled"
+        onSubmit={couponMakeHandler}
       >
         <h1>쿠폰 만들기</h1>
         <hr />
