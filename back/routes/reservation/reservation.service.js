@@ -21,5 +21,28 @@ module.exports = {
       throw error;
     }
   },
+  listReservation: async (userNum) => {
+    try {
+      const conn = await pool.getConnection();
+      const query = `SELECT * FROM restaurant_reservation where member_num = ?;`;
+      const [result] = await conn.query(query, [userNum]);
+      conn.release();
+      return result;
+    } catch (error) {
+      throw error;
+    }
+  },
+  updateReservation: async (info) => {
+    try {
+      const { rsv_num } = info;
+      const conn = await pool.getConnection();
+      const query = `UPDATE restaurant_reservation set rsv_status = "이행" WHERE rsv_num = ?;`;
+      const [result] = await conn.query(query, [rsv_num]);
+      conn.release();
+      return result;
+    } catch (error) {
+      throw error;
+    }
+  },
 };
 // `SELECT reservation.rsv_attime, reservation.rsv_man FROM reservation where member_num = ? AND rst_num = ?;`;
