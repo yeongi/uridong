@@ -46,32 +46,34 @@ module.exports = {
   makeCoupon: async (couponInfo) => {
     try {
       const {
+        menu_num,
         rst_num,
-        menu_num, //임시로 하드코딩
-        coupon_kind,
         coupon_name,
-        menu_name,
+        sale_ratio,
+        coupon_kind,
         pic_file_path, //임시로 null처리
-        use_possible_man,
+        coupon_print_attime, //NOW()로 가져옴
         use_possible_time,
+        use_possible_man,
       } = couponInfo; //식당쿠폰과 메뉴 조인
       const conn = await pool.getConnection();
-      const query = `INSERT INTO restaurant_coupon (rst_num, menu_num,
-        coupon_kind,
-        coupon_name,
-        menu_name,
-        pic_file_path,
-        use_possible_man,
-        use_possible_time,) VALUES (?,4,?,?,?,null,?,?);`;
+      const query = `INSERT INTO restaurant_coupon (menu_num, rst_num, coupon_name,
+          sale_ratio,
+          coupon_kind,
+          pic_file_path,
+          coupon_print_attime,
+          use_possible_time,
+          use_possible_man
+          ) VALUES (4,?,?,?,?,null,NOW(),?,?);`;
       const [result] = await conn.query(query, [
         rst_num,
-        // menu_num
-        coupon_kind,
         coupon_name,
-        menu_name,
-        // pic_file_path,
-        use_possible_man,
+        sale_ratio,
+        coupon_kind,
         use_possible_time,
+        use_possible_man,
+        // pic_file_path,
+        // menu_num
       ]);
       conn.release();
       return result;
