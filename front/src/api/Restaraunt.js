@@ -38,7 +38,9 @@ const RstApi = {
     });
   },
 
-  update: () => {},
+  postRsvReview: (info) => {
+    return 1;
+  },
 };
 
 export default RstApi;

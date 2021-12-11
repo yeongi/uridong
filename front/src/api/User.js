@@ -55,16 +55,6 @@ const UserAPI = {
       },
     });
   },
-
-  postMyRsv: (info) => {
-    return fetch(`http://localhost:4000/rsv/doRsv`, {
-      method: "post",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify(info),
-    });
-  },
 };
 
 export default UserAPI;
