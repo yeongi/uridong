@@ -27,6 +27,7 @@ router.get("/listRsv/:userNum", async (req, res) => {
 router.post("/updateRsv", async (req, res) => {
   try {
     const result = await ReservationService.updateRsvStatus(req.body);
+    // const fav_res = await FavService.updateRsvFavNum(req.body);
     res.status(200).json({ status: 200, data: result, message: "Success" });
   } catch (error) {
     return res.status(500).json({ status: 500, message: error });

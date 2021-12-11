@@ -34,7 +34,6 @@ module.exports = {
     try {
       const { member_num, rsv_num } = info;
       const conn = await pool.getConnection();
-      //play에 서비스를 구현 한것을 가져와서 여기다가 사용한다.
       const play_res = await playService.insertRsv(member_num);
       const query = `UPDATE restaurant_reservation set rsv_status = "이행" WHERE member_num = ? AND rsv_num = ?;`;
       const [result] = await conn.query(query, [member_num, rsv_num]);
@@ -48,7 +47,6 @@ module.exports = {
     try {
       const { member_num, rsv_num } = info;
       const conn = await pool.getConnection();
-      //play에 서비스를 구현 한것을 가져와서 여기다가 사용한다.
       const play_res = await playService.insertWreview(member_num);
       const query = `UPDATE restaurant_reservation set rsv_status = "리뷰작성완료" WHERE member_num = ? AND rsv_num = ?;`;
       const [result] = await conn.query(query, [member_num, rsv_num]);

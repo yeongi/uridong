@@ -75,4 +75,21 @@ module.exports = {
       throw error;
     }
   },
+
+  updateRsvFavNum: async (info) => {
+    try {
+      const { member_num, rst_num } = info;
+      const conn = await pool.getConnection();
+      const query = `UPDATE favorite set rsv_do_count = rsv_do_count + 1 WHERE member_num = ? AND rst_num = ?;`;
+      const [{ affectRows: result }] = await conn.query(query, [
+        member_num,
+        rst_num,
+      ]);
+      conn.release();
+      return result;
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
+  },
 };
