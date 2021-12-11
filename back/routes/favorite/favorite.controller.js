@@ -12,7 +12,7 @@ router.post("/add", async (req, res) => {
   }
 });
 
-//단골손님 
+//식당에 대한 모든 단골손님 리스트
 router.get("/patron/:rstnum", async (req, res) => {
   let { rstnum } = req.params;
   try {
@@ -24,8 +24,8 @@ router.get("/patron/:rstnum", async (req, res) => {
   }
 });
 
-//한달 이상 리뷰안쓴 단골
-router.get("/patron/:rstnum", async (req, res) => {
+//한달 이상 리뷰안쓴 단골 리스트
+router.get("/patron/review/:rstnum", async (req, res) => {
   let { rstnum } = req.params;
   try {
     const result = await FavService.getOneMonthpatronList(rstnum);
