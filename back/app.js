@@ -15,6 +15,7 @@ const adRouter = require("./routes/ad/index");
 const cpRouter = require("./routes/coupon/index");
 const favRouter = require("./routes/favorite/index");
 const rsvRouter = require("./routes/reservation/index");
+const PlayRouter = require("./routes/play/index");
 
 const app = express();
 
@@ -37,6 +38,7 @@ app.use("/ad", adRouter);
 app.use("/cp", cpRouter);
 app.use("/fav", favRouter);
 app.use("/rsv", rsvRouter);
+app.use("/play",PlayRouter);
 
 
 
