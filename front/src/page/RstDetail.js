@@ -1,29 +1,40 @@
 import classes from "../style/rst.module.css";
 import { Button } from "@mui/material";
 import BoxModal from "../lib/BasicModal";
-import HavigCoupon from "../component/HavingCoupon";
 import ApplyRsv from "../component/ApplyRsv";
 import { useParams } from "react-router";
 import thum from "../img/restaraunt.jpg";
 import map from "../img/map.jpg";
 import RstApi from "../api/Restaraunt";
-import { useCallback, useState, useEffect } from "react";
+import { useCallback, useState, useEffect, useContext } from "react";
+import CpApi from "../api/Coupon";
+import MemberCtx from "../store/memberContext";
+import CpList from "../component/Cplist";
 
 const RstDetail = () => {
   let { rstnum } = useParams();
-  console.log(useParams());
+  const memberCtx = useContext(MemberCtx);
+
   const [isLoading, setLoading] = useState(false);
   const [rstDetail, setRst] = useState([]);
+  const [myCpList, setList] = useState([]);
+
+  const getMyCp = useCallback(async () => {
+    const result = await CpApi.getMyRstCouponList(memberCtx.member.num, rstnum);
+    const data = await result.json();
+    console.log(data);
+    setList(data.data);
+  }, [myCpList, isLoading]);
 
   const getRstDetail = useCallback(async () => {
     const result = await RstApi.getRstDetail(rstnum);
     const data = await result.json();
-    console.log(data);
     setRst(data.data[0]);
   }, [rstDetail, isLoading]);
 
   useEffect(() => {
     getRstDetail();
+    getMyCp();
     setLoading(true);
     //eslint-disable-next-line
   }, []);
@@ -41,17 +52,45 @@ const RstDetail = () => {
               <img alt="" src={map} />
             </div>
             <div className={classes.item}>
-              <Button variant="outlined" size="small">
-                즐겨찾기 추가하기
-              </Button>
-              <br />
-              <BoxModal btn_name="쿠폰보유">
-                <HavigCoupon rstnum={rstnum} />
-              </BoxModal>
-              <br />
-              <BoxModal btn_name="예약하기">
-                <ApplyRsv rstnum={rstnum} />
-              </BoxModal>
+              {isLoading && (
+                <>
+                  <Button variant="outlined" size="small">
+                    즐겨찾기 추가하기
+                  </Button>
+                  <br />
+                  <BoxModal btn_name="쿠폰보유">
+                    <>
+                      {memberCtx.isLoggedIn && (
+                        <>
+                          <h3>쿠폰 보유 목록 표시</h3>
+                          <p>회원번호 : {memberCtx.member.num}</p>
+                          <p>식당번호 : {rstnum}</p>
+                          <hr />
+                          {myCpList.map((item) => {
+                            return (
+                              <CpList
+                                key={item.coupon_num}
+                                coupon_name={item.coupon_name}
+                                print_attime={item.print_attime}
+                                end_attime={item.end_attime}
+                              />
+                            );
+                          })}
+                        </>
+                      )}
+                      {!memberCtx.isLoggedIn && (
+                        <>
+                          <h1>로그인을 안했습니다.</h1>
+                        </>
+                      )}
+                    </>
+                  </BoxModal>
+                  <br />
+                  <BoxModal btn_name="예약하기">
+                    <ApplyRsv rstnum={rstnum} />
+                  </BoxModal>
+                </>
+              )}
             </div>
           </article>
           <article>

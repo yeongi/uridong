@@ -24,7 +24,7 @@ const UserRst = () => {
 
   return (
     <div>
-      <h1>유저가 등록한 식당</h1>
+      <h1>내가 등록한 식당 : 사장님 페이지</h1>
       {isLoading &&
         rstList.map((element) => {
           return (
