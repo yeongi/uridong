@@ -13,14 +13,14 @@ const Review = (props) => {
     const result = await RstApi.postRsvReview({
       member_num: props.membernum,
       rst_num: props.rstnum,
-      rating: rating,
-      content: content,
+      star: rating,
+      review: content,
     });
     const data = await result.json();
 
     console.log("리뷰 작성", data);
     if (data.status === 200) {
-      props.statusHadler();
+      props.statusHadler(props.rsvnum);
       alert("리뷰 작성");
     }
   };

@@ -16,29 +16,28 @@ const UserRsv = () => {
     setList(data.data);
   }, [rsvList, isLoading]);
 
-  const postMyRsvDo = useCallback(
-    async (rsv_num) => {
-      const result = await RsvApi.postRsvDo({
-        member_num: memberCtx.member.num,
-        rsv_num: rsv_num,
-      });
-      const data = await result.json();
-      setList(data.data);
-    },
-    [rsvList, isLoading]
-  );
+  const postMyRsvDo = async (a, b) => {
+    console.log(a, b);
+    const info = {
+      rsv_num: a,
+      rst_num: b,
+      member_num: memberCtx.member.num,
+    };
+    const result = await RsvApi.postRsvDo(info);
+    const data = await result.json();
+    console.log(data);
+    getMyRsv();
+  };
 
-  const postMyRsvDoReview = useCallback(
-    async (rsv_num) => {
-      const result = await RsvApi.postReviewDo({
-        member_num: memberCtx.member.num,
-        rsv_num: rsv_num,
-      });
-      const data = await result.json();
-      setList(data.data);
-    },
-    [rsvList, isLoading]
-  );
+  const postMyRsvDoReview = async (rsv_num) => {
+    const result = await RsvApi.postReviewDo({
+      member_num: memberCtx.member.num,
+      rsv_num: rsv_num,
+    });
+    const data = await result.json();
+    console.log(data);
+    getMyRsv();
+  };
 
   useEffect(() => {
     getMyRsv();
@@ -61,13 +60,20 @@ const UserRsv = () => {
               <p>예약 인원: {e.rsv_man} 명</p>
               <p>예상 도착 시간 : {e.arrive_predict_time} 분</p>
               {e.rsv_status === "대기" && (
-                <Button onClick={postMyRsvDo}>예약 완료로 바꾸기</Button>
+                <Button
+                  onClick={(event) => {
+                    postMyRsvDo(e.rsv_num, e.rst_num);
+                  }}
+                >
+                  예약 완료로 바꾸기
+                </Button>
               )}
               {e.rsv_status === "이행" && (
                 <BasicModal btn_name="리뷰 작성 하기">
                   <Review
                     membernum={memberCtx.member.num}
                     rstnum={e.rst_num}
+                    rsvnum={e.rsv_num}
                     statusHadler={postMyRsvDoReview}
                   />
                 </BasicModal>
