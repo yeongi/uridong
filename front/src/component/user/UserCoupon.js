@@ -1,7 +1,7 @@
 import React, { useCallback, useContext, useEffect, useState } from "react";
 import CpApi from "../../api/Coupon";
 import MemberCtx from "../../store/memberContext";
-import CouponList from "./CouponList";
+import CouponList from "../list/CouponList";
 
 const UserCoupon = () => {
   const [coupon, setCoupon] = useState([]);

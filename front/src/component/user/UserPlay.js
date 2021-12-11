@@ -1,8 +1,7 @@
 import React, { useCallback, useContext, useEffect, useState } from "react";
 import UserAPI from "../../api/User";
 import MemberCtx from "../../store/memberContext";
-import CouponList from "./CouponList";
-import PlayList from "./PlayList";
+import PlayList from "../list/PlayList";
 
 const UserPlay = () => {
   const [play, setPlay] = useState([]);
