@@ -1,4 +1,3 @@
-const { v4 } = require("uuid");
 const pool = require("../../config/dbConfig");
 
 module.exports = {

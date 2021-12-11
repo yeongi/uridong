@@ -30,7 +30,6 @@ router.get("/list/:area", async (req, res) => {
   //검색지역의 식당 리스트 가져오기
   try {
     const result = await RstService.areaRstList(Darea);
-    console.log(result);
     res.status(200).json({ status: 200, data: result, message: "Success" });
   } catch (error) {
     console.log(error);
