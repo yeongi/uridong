@@ -1,5 +1,6 @@
 const pool = require("../../config/dbConfig");
 const playService = require("../play/play.service");
+const favoriteService = require("../favorite/favorite.service");
 
 module.exports = {
   doReservation: async (info) => {
@@ -32,9 +33,13 @@ module.exports = {
   },
   updateRsvStatus: async (info) => {
     try {
-      const { member_num, rsv_num } = info;
+      const { member_num, rsv_num, rst_num } = info;
       const conn = await pool.getConnection();
       const play_res = await playService.insertRsv(member_num);
+      const fav_res = await favoriteService.updateRsvFavNum({
+        member_num: member_num,
+        rst_num: rst_num,
+      });
       const query = `UPDATE restaurant_reservation set rsv_status = "이행" WHERE member_num = ? AND rsv_num = ?;`;
       const [result] = await conn.query(query, [member_num, rsv_num]);
       conn.release();
