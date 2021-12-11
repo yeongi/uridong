@@ -55,6 +55,16 @@ const UserAPI = {
       },
     });
   },
+
+  postRstToUser: (info) => {
+    return fetch(`${CREATE_API}/noti/cp`, {
+      method: "post",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(info),
+    });
+  },
 };
 
 export default UserAPI;

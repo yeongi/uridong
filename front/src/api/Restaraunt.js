@@ -39,7 +39,13 @@ const RstApi = {
   },
 
   postRsvReview: (info) => {
-    return 1;
+    return fetch(CREATE_API + "/review", {
+      method: "post",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(info),
+    });
   },
 };
 
