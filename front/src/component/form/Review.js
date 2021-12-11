@@ -20,6 +20,7 @@ const Review = (props) => {
 
     console.log("리뷰 작성", data);
     if (data.status === 200) {
+      props.statusHadler();
       alert("리뷰 작성");
     }
   };

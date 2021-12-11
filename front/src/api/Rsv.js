@@ -19,6 +19,26 @@ const RsvApi = {
       body: JSON.stringify(info),
     });
   },
+
+  postRsvDo: (info) => {
+    return fetch(`${CREATE_API}/update/rsv`, {
+      method: "post",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(info),
+    });
+  },
+
+  postReviewDo: (info) => {
+    return fetch(`${CREATE_API}/update/review`, {
+      method: "post",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(info),
+    });
+  },
 };
 
 export default RsvApi;

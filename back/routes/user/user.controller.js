@@ -3,7 +3,6 @@ const { off } = require("../../config/dbConfig");
 var router = express.Router();
 const UserService = require("./user.service");
 
-
 //회원가입
 router.post("/signUp", async (req, res) => {
   try {
@@ -20,10 +19,9 @@ router.post("/login", async (req, res) => {
     const result = await UserService.checkUser(req.body);
     console.log(result);
     if (result === 0) {
-      res.status(200).json({status: 200, body: result, message: "Fail",
-      });
+      res.status(200).json({ status: 200, body: result, message: "Fail" });
     } else {
-      res.status(200).json({ status: 200,  data: result, message: "Success" });
+      res.status(200).json({ status: 200, data: result, message: "Success" });
     }
   } catch (error) {
     return res.status(500).json({ status: 500, message: error });
@@ -89,6 +87,7 @@ router.get("/memberlist", async (req, res) => {
   }
 });
 
+//회원 활동 리스트 가져오기
 router.get("/play", async (req, res) => {
   try {
     const result = await UserService.getPlayList();
@@ -99,6 +98,7 @@ router.get("/play", async (req, res) => {
   }
 });
 
+//회원 점수 갱신 10일전 리스트
 router.get("/doyouwannabeVIP/:userNum", async (req, res) => {
   try {
     let { userNum } = req.params;
@@ -109,61 +109,51 @@ router.get("/doyouwannabeVIP/:userNum", async (req, res) => {
     return res.status(500).json({ status: 500, message: error });
   }
 });
-//10일 뒤 우수회원 정산일입니다!
-router.post("/notificationScore", async (req, res) => {
+
+//10일 뒤 우수회원 정산일 알림 넣기
+router.get("/noti/score", async (req, res) => {
   try {
-    const result = await UserService.insertNoScore(req.body);
     console.log(result);
     if (result === 0) {
-      res.status(200).json({status: 200, body: result, message: "Fail",
-      });
+      res.status(200).json({ status: 200, body: result, message: "Fail" });
     } else {
-      res.status(200).json({ status: 200,  data: result, message: "Success" });
+      res.status(200).json({ status: 200, data: result, message: "Success" });
     }
   } catch (error) {
     return res.status(500).json({ status: 500, message: error });
   }
 });
+
 //쿠폰이 도착했습니다!
-router.post("/notificationCoupon", async (req, res) => {
+router.post("/noti/cp", async (req, res) => {
   try {
     const result = await UserService.insertNoCoupon(req.body);
     console.log(result);
     if (result === 0) {
-      res.status(200).json({status: 200, body: result, message: "Fail",
-      });
+      res.status(200).json({ status: 200, body: result, message: "Fail" });
     } else {
-      res.status(200).json({ status: 200,  data: result, message: "Success" });
+      res.status(200).json({ status: 200, data: result, message: "Success" });
     }
   } catch (error) {
     return res.status(500).json({ status: 500, message: error });
   }
 });
 
-router.get("/notificationCoupon/:userNum", async (req, res) => {
+//전체 알림 가져오기
+router.get("/noti/:userNum", async (req, res) => {
   try {
     let { userNum } = req.params;
-    const result = await UserService.getNcounpon(userNum);
-    res.status(200).json({ status: 200, data: result, message: "Success" });
-  } catch (error) {
-    return res.status(500).json({ status: 500, message: error });
-  }
-});
-
-router.get("/notificationScore/:userNum", async (req, res) => {
-  try {
-    let { userNum } = req.params;
-    const result = await UserService.getNscore(userNum);
+    const result = await UserService.getMyNotice(userNum);
     res.status(200).json({ status: 200, data: result, message: "Success" });
   } catch (error) {
     return res.status(500).json({ status: 500, message: error });
   }
 
+  //미완
   router.get("/acceptNotice/:NoNum", async (req, res) => {
     let { NoNum } = req.params;
     try {
       const result = await AdService.acceptNoRead(NoNum);
-      const result2 = await AdService.acceptNoCoupon(NoNum);
       res.status(200).json({ status: 200, data: result, message: "Success" });
     } catch (error) {
       return res.status(500).json({ status: 500, message: error });

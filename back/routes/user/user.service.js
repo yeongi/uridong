@@ -148,7 +148,7 @@ module.exports = {
       ORDER BY sum_score DESC
       )member_score_sum)member_ranking where member_num=? GROUP BY member_num ORDER BY rank ;
       `;
-      const [result] = await conn.query(query,[userNum]);
+      const [result] = await conn.query(query, [userNum]);
       conn.release();
       return result;
     } catch (error) {
@@ -157,11 +157,9 @@ module.exports = {
     }
   },
 
-  insertNoScore: async (noInfo) => {
+  insertNoScore: async () => {
     try {
-      const {
-        member_num,
-      } = noInfo;
+      //모든 회원한테 다 넣어야함
       const conn = await pool.getConnection();
       const query = `INSERT INTO notification
             (
@@ -176,10 +174,10 @@ module.exports = {
                     ?
                 );`;
       const [{ affectRows: result }] = await conn.query(query, [
-        member_num,
+        11,
         "10일 뒤 우수회원 정산일입니다. 본인의 점수 및 백분위를 확인하세요!",
         "점수",
-        0
+        0,
       ]);
       conn.release();
       return result;
@@ -189,13 +187,9 @@ module.exports = {
     }
   },
 
-
   insertNoCoupon: async (noInfo) => {
     try {
-      const {
-        member_num,
-        coupon_num
-      } = noInfo;
+      const { member_num, coupon_num } = noInfo;
       const conn = await pool.getConnection();
       const query = `INSERT INTO notification
             (
@@ -216,7 +210,7 @@ module.exports = {
         coupon_num,
         "쿠폰이 도착했습니다! 확인하세요!",
         "쿠폰",
-        0
+        0,
       ]);
       conn.release();
       return result;
@@ -226,12 +220,12 @@ module.exports = {
     }
   },
 
-  getNcounpon: async (userNum) => {
+  getMyNotice: async (userNum) => {
     try {
       console.log(userNum);
       const conn = await pool.getConnection();
-      const query = `select * from notification where member_num=? and content_devision="쿠폰" and read_YN=0`;
-      const [result] = await conn.query(query,[userNum]);
+      const query = `select * from notification where member_num=? and read_YN=0`;
+      const [result] = await conn.query(query, [userNum]);
       conn.release();
       return result;
     } catch (error) {
@@ -239,27 +233,12 @@ module.exports = {
       throw error;
     }
   },
-
-  getNscore: async (userNum) => {
-    try {
-      console.log(userNum);
-      const conn = await pool.getConnection();
-      const query = `select * from notification where member_num=? and content_devision="점수" and read_YN=0`;
-      const [result] = await conn.query(query,[userNum]);
-      conn.release();
-      return result;
-    } catch (error) {
-      console.log(error);
-      throw error;
-    }
-  },
-
   acceptNoRead: async (NoNum) => {
     try {
       console.log(NoNum);
       const conn = await pool.getConnection();
       const query = `UPDATE notification set read_YN = 1 where No_num=?;`;
-      const [result] = await conn.query(query,[NoNum]);
+      const [result] = await conn.query(query, [NoNum]);
       conn.release();
       return result;
     } catch (error) {

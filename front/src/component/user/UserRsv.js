@@ -16,6 +16,30 @@ const UserRsv = () => {
     setList(data.data);
   }, [rsvList, isLoading]);
 
+  const postMyRsvDo = useCallback(
+    async (rsv_num) => {
+      const result = await RsvApi.postRsvDo({
+        member_num: memberCtx.member.num,
+        rsv_num: rsv_num,
+      });
+      const data = await result.json();
+      setList(data.data);
+    },
+    [rsvList, isLoading]
+  );
+
+  const postMyRsvDoReview = useCallback(
+    async (rsv_num) => {
+      const result = await RsvApi.postReviewDo({
+        member_num: memberCtx.member.num,
+        rsv_num: rsv_num,
+      });
+      const data = await result.json();
+      setList(data.data);
+    },
+    [rsvList, isLoading]
+  );
+
   useEffect(() => {
     getMyRsv();
     setLoading(true);
@@ -36,15 +60,20 @@ const UserRsv = () => {
               <p>예약 시간: {e.rsv_attime}</p>
               <p>예약 인원: {e.rsv_man} 명</p>
               <p>예상 도착 시간 : {e.arrive_predict_time} 분</p>
-              {e.rsv_status === "대기" && <Button>예약 완료로 바꾸기</Button>}
+              {e.rsv_status === "대기" && (
+                <Button onClick={postMyRsvDo}>예약 완료로 바꾸기</Button>
+              )}
               {e.rsv_status === "이행" && (
-                <BasicModal btn_name="리뷰 작성 하기"></BasicModal>
+                <BasicModal btn_name="리뷰 작성 하기">
+                  <Review
+                    membernum={memberCtx.member.num}
+                    rstnum={e.rst_num}
+                    statusHadler={postMyRsvDoReview}
+                  />
+                </BasicModal>
               )}
               {e.rsv_status === "리뷰작성완료" && <p>--리뷰 작성 완료--</p>}
               <hr />
-              <BasicModal btn_name="리뷰 작성 하기">
-                <Review membernum={memberCtx.member.num} rstnum={e.rst_num} />
-              </BasicModal>
             </>
           );
         })}
