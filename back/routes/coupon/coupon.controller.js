@@ -16,7 +16,7 @@ router.get("/hav/:userNum", async (req, res) => {
 //식당에 대한 내 쿠폰 확인
 router.post("/havRst", async (req, res) => {
   try {
-    const result = await CouponService.getMyRstCoupon(req.body);
+    const result = await CouponService.getMemberRstCoupon(req.body);
     res.status(200).json({ status: 200, data: result, message: "Success" });
   } catch (error) {
     return res.status(500).json({ status: 500, message: error });
@@ -37,6 +37,16 @@ router.post("/havRst", async (req, res) => {
 router.post("/made", async (req, res) => {
   try {
     const result = await CouponService.makeCoupon(req.body);
+    res.status(200).json({ status: 200, data: result, message: "Success" });
+  } catch (error) {
+    return res.status(500).json({ status: 500, message: error });
+  }
+});
+
+router.get("/rst/:rstnum", async (req, res) => {
+  try {
+    const { rstnum } = req.params;
+    const result = await CouponService.getMyRst(rstnum);
     res.status(200).json({ status: 200, data: result, message: "Success" });
   } catch (error) {
     return res.status(500).json({ status: 500, message: error });

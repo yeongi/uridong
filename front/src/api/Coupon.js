@@ -32,6 +32,15 @@ const CpApi = {
       },
     });
   },
+
+  getRstCpList: (rstnum) => {
+    return fetch(`${CREATE_API}/rst/${rstnum}`, {
+      method: "get",
+      headers: {
+        "Content-type": "application/json",
+      },
+    });
+  },
 };
 
 export default CpApi;

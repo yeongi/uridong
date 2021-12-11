@@ -15,7 +15,8 @@ module.exports = {
       throw error;
     }
   },
-  getMyRstCoupon: async (info) => {
+
+  getMemberRstCoupon: async (info) => {
     try {
       const { member_num, rst_num } = info;
       const conn = await pool.getConnection();
@@ -30,6 +31,18 @@ module.exports = {
       throw error;
     }
   },
+  getMyRst: async (rst_num) => {
+    try {
+      const conn = await pool.getConnection();
+      const query = `SELECT coupon_num, coupon_name,sale_ratio,coupon_kind,use_possible_man  from restaurant_coupon where rst_num=?;`;
+      const [result] = await conn.query(query, [rst_num]);
+      conn.release();
+      return result;
+    } catch (error) {
+      throw error;
+    }
+  },
+
   lookMakeCoupon: async (info) => {
     try {
       const { rst_num } = info;
