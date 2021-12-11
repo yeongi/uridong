@@ -8,6 +8,7 @@ import map from "../img/map.jpg";
 import RstApi from "../api/Restaraunt";
 import { useCallback, useState, useEffect, useContext } from "react";
 import CpApi from "../api/Coupon";
+import FavApi from "../api/Fav";
 import MemberCtx from "../store/memberContext";
 import CpList from "../component/Cplist";
 
@@ -39,6 +40,12 @@ const RstDetail = () => {
     //eslint-disable-next-line
   }, []);
 
+  const addRst = useCallback(async () => {
+    const result = await FavApi.addFavRst(memberCtx.member.num, rstnum);
+    const data = await result.json();
+    console.log(data);
+  }, [isLoading]);
+
   return (
     <>
       <h1>{rstnum}</h1>
@@ -54,7 +61,7 @@ const RstDetail = () => {
             <div className={classes.item}>
               {isLoading && (
                 <>
-                  <Button variant="outlined" size="small">
+                  <Button variant="outlined" size="small" onClick={addRst}>
                     즐겨찾기 추가하기
                   </Button>
                   <br />
