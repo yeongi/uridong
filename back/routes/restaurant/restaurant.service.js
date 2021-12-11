@@ -124,4 +124,23 @@ module.exports = {
       throw error;
     }
   },
+  insertReview: async (info) => {
+    try {
+      const { member_num, rst_num, star, review } = info;
+      const conn = await pool.getConnection();
+      const query = `INSERT INTO favorite_estimate_history (member_num, rst_num, star, review, write_date)
+       VALUES (?,?,?,?,NOW());`;
+      const [{ affectRows: result }] = await conn.query(query, [
+        member_num,
+        rst_num,
+        star,
+        review,
+      ]);
+      conn.release();
+      return result;
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
+  },
 };
