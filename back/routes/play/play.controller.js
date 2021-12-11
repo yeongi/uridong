@@ -14,16 +14,11 @@ router.get("/play", async (req, res) => {
   }
 });
 
-
-
-
-
-
-
 //활동내역 추가하기-예약
 router.post("/addPlayRsv", async (req, res) => {
   try {
-    const result = await playService.insertRsv(req.body);
+    const {membernum} = req.body;
+    const result = await playService.insertRsv(membernum);
     res.status(200).json({ status: 200, data: result, message: "Success" });
   } catch (error) {
     return res.status(500).json({ status: 500, message: error });
@@ -32,34 +27,8 @@ router.post("/addPlayRsv", async (req, res) => {
 //활동내역 추가하기-리뷰작성
 router.post("/addPlayWreview", async (req, res) => {
   try {
-    const result = await playService.insertWreview(req.body);
-    res.status(200).json({ status: 200, data: result, message: "Success" });
-  } catch (error) {
-    return res.status(500).json({ status: 500, message: error });
-  }
-});
-//활동내역 추가하기-쿠폰사용
-router.post("/addPlayUcoupon", async (req, res) => {
-  try {
-    const result = await playService.insertUcoupon(req.body);
-    res.status(200).json({ status: 200, data: result, message: "Success" });
-  } catch (error) {
-    return res.status(500).json({ status: 500, message: error });
-  }
-});
-//활동내역 추가하기-광고등록
-router.post("/addPlayRAd", async (req, res) => {
-  try {
-    const result = await playService.insertRAd(req.body);
-    res.status(200).json({ status: 200, data: result, message: "Success" });
-  } catch (error) {
-    return res.status(500).json({ status: 500, message: error });
-  }
-});
-//활동내역 추가하기-쿠폰발급
-router.post("/addPlayPcoupon", async (req, res) => {
-  try {
-    const result = await playService.insertPcoupon(req.body);
+    const {membernum} = req.body;
+    const result = await playService.insertWreview(membernum);
     res.status(200).json({ status: 200, data: result, message: "Success" });
   } catch (error) {
     return res.status(500).json({ status: 500, message: error });
