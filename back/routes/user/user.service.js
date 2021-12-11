@@ -117,4 +117,154 @@ module.exports = {
       throw error;
     }
   },
+  //회원이 얻을 수 있는 활동 점수리스트
+  getPlayList: async () => {
+    try {
+      const conn = await pool.getConnection();
+      const query = "SELECT * FROM play where target_devision = 'member'";
+      const [result] = await conn.query(query);
+      conn.release();
+      return result;
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
+  },
+  //상위 ?퍼센트
+  getRate: async (userNum) => {
+    try {
+      console.log(userNum);
+      const conn = await pool.getConnection();
+      const query = `
+      SELECT * , (rank/@ALL)*100 AS percent FROM (
+      SELECT * , ( @rank := @rank + 1 ) AS rank FROM(
+      SELECT a.member_num, SUM(p.score) AS sum_score 
+      FROM( member AS a INNER JOIN 
+      (play AS p INNER JOIN member_play_history AS m ON p.play_num = m.play_num) 
+      ON a.member_num = m.member_num, 
+      (SELECT @rank := 0) AS d, 
+      (SELECT @ALL := count(DISTINCT member_num) from member_play_history) AS f ) 
+      WHERE m.end_date >= DATE_ADD(NOW() , INTERVAL 10 DAY) GROUP BY a.member_num 
+      ORDER BY sum_score DESC
+      )member_score_sum)member_ranking where member_num=? GROUP BY member_num ORDER BY rank ;
+      `;
+      const [result] = await conn.query(query,[userNum]);
+      conn.release();
+      return result;
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
+  },
+
+  insertNoScore: async (noInfo) => {
+    try {
+      const {
+        member_num,
+      } = noInfo;
+      const conn = await pool.getConnection();
+      const query = `INSERT INTO notification
+            (
+              member_num,
+              NO_content,
+              content_devision,
+              read_YN
+                ) VALUES (
+                    ?,
+                    ?,
+                    ?,
+                    ?
+                );`;
+      const [{ affectRows: result }] = await conn.query(query, [
+        member_num,
+        "10일 뒤 우수회원 정산일입니다. 본인의 점수 및 백분위를 확인하세요!",
+        "점수",
+        0
+      ]);
+      conn.release();
+      return result;
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
+  },
+
+
+  insertNoCoupon: async (noInfo) => {
+    try {
+      const {
+        member_num,
+        coupon_num
+      } = noInfo;
+      const conn = await pool.getConnection();
+      const query = `INSERT INTO notification
+            (
+              member_num,
+              coupon_num,
+              NO_content,
+              content_devision,
+              read_YN
+                ) VALUES (
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?
+                );`;
+      const [{ affectRows: result }] = await conn.query(query, [
+        member_num,
+        coupon_num,
+        "쿠폰이 도착했습니다! 확인하세요!",
+        "쿠폰",
+        0
+      ]);
+      conn.release();
+      return result;
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
+  },
+
+  getNcounpon: async (userNum) => {
+    try {
+      console.log(userNum);
+      const conn = await pool.getConnection();
+      const query = `select * from notification where member_num=? and content_devision="쿠폰" and read_YN=0`;
+      const [result] = await conn.query(query,[userNum]);
+      conn.release();
+      return result;
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
+  },
+
+  getNscore: async (userNum) => {
+    try {
+      console.log(userNum);
+      const conn = await pool.getConnection();
+      const query = `select * from notification where member_num=? and content_devision="점수" and read_YN=0`;
+      const [result] = await conn.query(query,[userNum]);
+      conn.release();
+      return result;
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
+  },
+
+  acceptNoRead: async (NoNum) => {
+    try {
+      console.log(NoNum);
+      const conn = await pool.getConnection();
+      const query = `UPDATE notification set read_YN = 1 where No_num=?;`;
+      const [result] = await conn.query(query,[NoNum]);
+      conn.release();
+      return result;
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
+  },
 };

@@ -43,10 +43,21 @@ router.post("/made", async (req, res) => {
   }
 });
 
+//내 식당 쿠폰 리스트
 router.get("/rst/:rstnum", async (req, res) => {
   try {
     const { rstnum } = req.params;
     const result = await CouponService.getMyRst(rstnum);
+    res.status(200).json({ status: 200, data: result, message: "Success" });
+  } catch (error) {
+    return res.status(500).json({ status: 500, message: error });
+  }
+});
+
+//회원에게 쿠폰 제공
+router.post("/give", async (req, res) => {
+  try {
+    const result = await CouponService.giveCoupon(req.body);
     res.status(200).json({ status: 200, data: result, message: "Success" });
   } catch (error) {
     return res.status(500).json({ status: 500, message: error });
