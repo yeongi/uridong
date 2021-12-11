@@ -1,5 +1,6 @@
-import { Button } from "@mui/material";
 import React from "react";
+import BasicModal from "../../lib/BasicModal";
+import classes from "../../style/layout.module.css";
 
 const RstList = (props) => {
   const date = new Date(props.rst_regist_date);
@@ -9,9 +10,11 @@ const RstList = (props) => {
       <p>{props.rst_name}</p> <br />
       <p>식당 지역 : {props.rst_address}</p> <br />
       <p>식당 등록일자 : {date.toDateString()}</p> <br />
-      <Button>쿠폰 만들기</Button>
-      <Button>쿠폰 뿌리기</Button>
-      <Button>단골 손님 관리</Button>
+      <div className={classes["btn-wrapper"]}>
+        <BasicModal btn_name="쿠폰 만들기">쿠폰 만들기</BasicModal>
+        <BasicModal btn_name="쿠폰뿌리기">쿠폰뿌리기</BasicModal>
+        <BasicModal btn_name="단골 손님 관리">단골 손님 관리</BasicModal>
+      </div>
     </div>
   );
 };

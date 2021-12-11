@@ -1,14 +1,18 @@
 import { Box } from "@mui/system";
 import { TextField, Button } from "@mui/material";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import RstApi from "../api/Restaraunt";
+import MemberCtx from "../store/memberContext";
 
 const RstApply = () => {
   const nav = useNavigate();
 
+  const memberCtx = useContext(MemberCtx);
+
   //식당 state
   const [restaraunt, setRestaraunt] = useState({
+    member_num: memberCtx.member.num,
     rst_name: "",
     rst_call_num: "",
     rst_addr: "",
