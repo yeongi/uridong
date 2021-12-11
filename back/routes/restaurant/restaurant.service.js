@@ -143,4 +143,16 @@ module.exports = {
       throw error;
     }
   },
+  getReviewList: async (rstNum) => {
+    try {
+      const conn = await pool.getConnection();
+      const query = `SELECT * FROM favorite_estimate_history where rst_num= ?;`;
+      const [result] = await conn.query(query, [rstNum]);
+      conn.release();
+      return result;
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
+  },
 };

@@ -71,4 +71,15 @@ router.post("/review", async (req, res) => {
   }
 });
 
+//리뷰 조회
+router.get("/review/list/:rstNum", async (req, res) => {
+  try {
+    let { rstNum } = req.params;
+    const result = await RstService.getReviewList(rstNum);
+    res.status(200).json({ status: 200, data: result, message: "Success" });
+  } catch (error) {
+    return res.status(500).json({ status: 500, message: error });
+  }
+});
+
 module.exports = router;
