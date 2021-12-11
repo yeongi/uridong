@@ -39,7 +39,7 @@ router.get("/inValidAdlist", async (req, res) => {
 //광고 등록 신청하기
 router.post("/AdReApp", async (req, res) => {
   try {
-    const result = await RstService.registappAd();
+    const result = await AdService.registappAd();
     res.status(200).json({ status: 200, data: result, message: "Success" });
   } catch (error) {
     return res.status(500).json({ status: 500, message: error });
@@ -49,7 +49,7 @@ router.post("/AdReApp", async (req, res) => {
 router.get("/accAd/:ADnum", async (req, res) => {
   let { ADnum } = req.params;
   try {
-    const result = await RstService.acceptAd(ADnum);
+    const result = await AdService.acceptAd(ADnum);
     res.status(200).json({ status: 200, data: result, message: "Success" });
   } catch (error) {
     return res.status(500).json({ status: 500, message: error });

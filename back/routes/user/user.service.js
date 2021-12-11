@@ -61,7 +61,7 @@ module.exports = {
   },
   getMyFavorite: async (userNum) => {
     try {
-      const conn = await pool.getConnection();
+      const conn = await pool.getConnection(); //식당과 조인하여 식당명 가져오기
       const query = "SELECT * FROM favorite where member_num = ?;";
       const [result] = await conn.query(query, [userNum]);
       conn.release();
