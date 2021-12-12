@@ -93,6 +93,15 @@ const UserAPI = {
       },
     });
   },
+
+  getMyRaking: (usernum) => {
+    return fetch(`${CREATE_API}/doyouwannabeVIP/${usernum}`, {
+      method: "get",
+      headers: {
+        "Content-type": "application/json",
+      },
+    });
+  },
 };
 
 export default UserAPI;

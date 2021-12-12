@@ -192,7 +192,7 @@ module.exports = {
                     ?
                 );`;
       const [{ affectRows: result }] = await conn.query(query, [
-        11,
+        27,
         "10일 뒤 우수회원 정산일입니다. 본인의 점수 및 백분위를 확인하세요!",
         "점수",
         0,
