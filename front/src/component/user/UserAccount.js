@@ -11,6 +11,7 @@ const UserAccount = () => {
     const result = await UserAPI.getMyInfo(memberCtx.member.num);
     const data = await result.json();
     setAccount(data.data[0]);
+    console.log(data);
     //eslint-disable-next-line
   }, [account, isLoading]);
 
@@ -29,7 +30,7 @@ const UserAccount = () => {
           <p>등급 : {account.member_grade}</p>
           <p>전화번호 : {account.member_call_num}</p>
           <p>이메일 : {account.member_email}</p>
-          <p>선호지역 : {account.last_login}</p>
+          <p>선호지역 : {account.like_area}</p>
           <p>마지막 로그인 날짜 : {account.last_login}</p>
         </div>
       )}

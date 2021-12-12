@@ -28,6 +28,16 @@ router.post("/login", async (req, res) => {
   }
 });
 
+router.get("/login/update/:membernum", async (req, res) => {
+  try {
+    let { membernum } = req.params;
+    const result = await UserService.updateLoginDate(membernum);
+    res.status(200).json({ status: 200, data: result, message: "Success" });
+  } catch (error) {
+    return res.status(500).json({ status: 500, message: error });
+  }
+});
+
 //유저 계정 정보
 router.get("/myInfo/:userNum", async (req, res) => {
   try {
@@ -113,6 +123,7 @@ router.get("/doyouwannabeVIP/:userNum", async (req, res) => {
 //10일 뒤 우수회원 정산일 알림 넣기
 router.get("/noti/score", async (req, res) => {
   try {
+    const result = await UserService.insertNoScore(req.body);
     console.log(result);
     if (result === 0) {
       res.status(200).json({ status: 200, body: result, message: "Fail" });

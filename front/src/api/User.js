@@ -65,6 +65,34 @@ const UserAPI = {
       body: JSON.stringify(info),
     });
   },
+
+  updateLoginDate: (memberNum) => {
+    return fetch(`${CREATE_API}/login/update/${memberNum}`, {
+      method: "PATCH",
+      headers: {
+        "Content-type": "application/json",
+      },
+    });
+  },
+
+  giveCpNotice: (info) => {
+    return fetch(`${CREATE_API}/noti/cp`, {
+      method: "post",
+      body: JSON.stringify(info),
+      headers: {
+        "Content-type": "application/json",
+      },
+    });
+  },
+
+  getMyNotice: (usernum) => {
+    return fetch(`${CREATE_API}/noti/${usernum}`, {
+      method: "get",
+      headers: {
+        "Content-type": "application/json",
+      },
+    });
+  },
 };
 
 export default UserAPI;

@@ -94,27 +94,31 @@ module.exports = {
       throw error;
     }
   },
-  
+
   giveCoupon: async (couponInfo) => {
     try {
-      const {
-        member_num,
-        coupon_num1,
-        coupon_num2,
-      } = couponInfo; 
+      const { member_num, coupon_num1, coupon_num2, No_num } = couponInfo;
       const conn = await pool.getConnection();
+
+      const yn_query = `UPDATE notification SET read_YN = 1 WHERE No_num=?;`;
+
       const query = `INSERT INTO member_coupon (
         member_num,
         coupon_num,
         print_attime,
         end_attime
         ) VALUES (?,?,NOW(),date_add(now(),interval (select use_possible_time from restaurant_coupon where coupon_num=?) hour));`;
+
       const [result] = await conn.query(query, [
         member_num,
         coupon_num1,
-        coupon_num2
+        coupon_num2,
       ]);
+
+      const [yn_result] = await conn.query(yn_query, [No_num]);
       conn.release();
+      console.log(result);
+      console.log(yn_result);
       return result;
     } catch (error) {
       throw error;

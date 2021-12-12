@@ -58,14 +58,25 @@
 }
 
 .notification-wrap {
-  width: 500px;
+  width: 700px;
   height: 300px;
   border: 1px black solid;
   border-radius: 20;
   background-color: white;
   position: fixed;
   margin: 40px;
+  padding: 20px;
   z-index: 20;
+  overflow: scroll;
+}
+
+.notification-wrap::-webkit-scrollbar {
+  display: none;
+}
+
+.notification-item {
+  display: flex;
+  justify-content: space-between;
 }
 
 .btn-wrapper {

@@ -16,10 +16,10 @@ const Login = () => {
     const member = { id: memId, pw: memPw };
 
     const result = await UserAPI.checkLogin(member);
+
     const data = await result.json();
 
     if (data.status === 200 && data.message === "Success") {
-      console.log(data);
       memberCtx.onLogIn({
         isLoggedIn: true,
         num: data.data.member_num,
@@ -27,6 +27,8 @@ const Login = () => {
         name: data.data.member_name,
         like_area: data.data.like_area,
       });
+      const date = await UserAPI.updateLoginDate(memberCtx.member.num);
+      console.log(date);
       navigate("/");
     } else {
       alert("로그인 실패 ");

@@ -41,6 +41,16 @@ const CpApi = {
       },
     });
   },
+
+  postGiveRstCp: (info) => {
+    return fetch(`${CREATE_API}/give`, {
+      method: "post",
+      body: JSON.stringify(info),
+      headers: {
+        "Content-type": "application/json",
+      },
+    });
+  },
 };
 
 export default CpApi;

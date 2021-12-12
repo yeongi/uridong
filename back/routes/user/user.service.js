@@ -37,6 +37,7 @@ module.exports = {
       throw error;
     }
   },
+
   getUserList: async () => {
     try {
       const conn = await pool.getConnection();
@@ -48,6 +49,7 @@ module.exports = {
       throw error;
     }
   },
+
   getMyInfo: async (userNum) => {
     try {
       const conn = await pool.getConnection();
@@ -59,6 +61,7 @@ module.exports = {
       throw error;
     }
   },
+
   getMyFavorite: async (userNum) => {
     try {
       const conn = await pool.getConnection(); //식당과 조인하여 식당명 가져오기
@@ -70,6 +73,7 @@ module.exports = {
       throw error;
     }
   },
+
   getMyPlay: async (userNum) => {
     try {
       const conn = await pool.getConnection(); //활동과 조인해서 활동명과 활동점수도 추가함
@@ -83,6 +87,7 @@ module.exports = {
       throw error;
     }
   },
+
   getMyRst: async (userNum) => {
     try {
       const conn = await pool.getConnection();
@@ -95,8 +100,21 @@ module.exports = {
       throw error;
     }
   },
-  updateUser: (userInfo) => {},
+
+  updateLoginDate: async (userInfo) => {
+    try {
+      const conn = await pool.getConnection();
+      const query = `UPDATE member SET last_login = noW() WHERE member_num=?;`;
+      const [result] = await conn.query(query, [userInfo]);
+      conn.release();
+      return result;
+    } catch (error) {
+      throw error;
+    }
+  },
+
   deleteUser: (userInfo) => {},
+
   checkUser: async (userInfo) => {
     try {
       console.log(userInfo);

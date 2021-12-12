@@ -9,6 +9,7 @@ import React, { useCallback, useContext, useEffect, useState } from "react";
 import FavApi from "../../api/Fav";
 import CpApi from "../../api/Coupon";
 import classes from "../../style/layout.module.css";
+import UserAPI from "../../api/User";
 
 const RstFavList = (props) => {
   const [favList, setFavList] = useState([]);
@@ -27,6 +28,18 @@ const RstFavList = (props) => {
     const data = await result.json();
     setCpList(data.data);
   }, [cpList, isLoading]);
+
+  const giveCpHandler = async (member_num) => {
+    const result = await UserAPI.giveCpNotice({
+      member_num: member_num,
+      coupon_num: selectCp,
+    });
+    if (result.status === "500") {
+      alert("중복입니다. 다른 쿠폰을 선택하세요. ");
+    } else {
+      alert("지급완료 ");
+    }
+  };
 
   useEffect(() => {
     getRstFav();
@@ -56,7 +69,13 @@ const RstFavList = (props) => {
                 <p>{member.member_num}</p>
                 <p>{member.member_name}</p>
                 <p>{member.favorite_start_date}</p>
-                <Button>쿠폰 지급하기</Button>
+                <Button
+                  onClick={(e) => {
+                    giveCpHandler(member.member_num);
+                  }}
+                >
+                  쿠폰 지급하기
+                </Button>
                 <FormControl sx={{ m: 1, minWidth: 120 }}>
                   <InputLabel id="select-coupon">쿠폰 선택하기</InputLabel>
                   <Select

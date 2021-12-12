@@ -11,7 +11,7 @@ const UserCoupon = () => {
   const getMyCP = useCallback(async () => {
     const result = await CpApi.getMyCouponList(memberCtx.member.num);
     const data = await result.json();
-    console.log();
+    console.log(data);
     setCoupon(data.data);
   }, [coupon, isLoading]);
 
@@ -29,6 +29,7 @@ const UserCoupon = () => {
           return (
             <CouponList
               key={element.coupon_num}
+              coupon_name={element.coupon_name}
               print_attime={element.print_attime}
               end_attime={element.end_attime}
               use_yn={element.use_yn}
