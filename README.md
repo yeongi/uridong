@@ -1,4 +1,5 @@
-![image](https://user-images.githubusercontent.com/40158148/217187878-ec03d15c-e1d7-46fb-aaa1-35940ed52a90.png)
+
+
 ### uridong
 
 ---
@@ -7,7 +8,6 @@
 
 **프로젝트 1줄 설명**
 
-![image](https://user-images.githubusercontent.com/40158148/217187927-0232e530-a75b-49df-9c83-d633d35cfb95.png)
 
 - 코로나로 인해  판매율이 저조해진 우리 동네 식당에게 다양한 서비스를 제공하는 시스템
 
@@ -42,6 +42,9 @@ Front-end
 Back-end
 
 - Node.js, MySql
+
+![image](https://user-images.githubusercontent.com/40158148/217187878-ec03d15c-e1d7-46fb-aaa1-35940ed52a90.png)
+![image](https://user-images.githubusercontent.com/40158148/217187927-0232e530-a75b-49df-9c83-d633d35cfb95.png)
 
 **설명**
 
