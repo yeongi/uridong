@@ -1,5 +1,4 @@
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/12b00161-2a31-4594-b20d-39d99bbe80b4/Untitled.png)
-
+![image](https://user-images.githubusercontent.com/40158148/217187878-ec03d15c-e1d7-46fb-aaa1-35940ed52a90.png)
 ### uridong
 
 ---
@@ -8,7 +7,7 @@
 
 **프로젝트 1줄 설명**
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/de99eada-8854-4436-8270-97980b3881da/Untitled.png)
+![image](https://user-images.githubusercontent.com/40158148/217187927-0232e530-a75b-49df-9c83-d633d35cfb95.png)
 
 - 코로나로 인해  판매율이 저조해진 우리 동네 식당에게 다양한 서비스를 제공하는 시스템
 
